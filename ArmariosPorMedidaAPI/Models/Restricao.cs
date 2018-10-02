@@ -9,9 +9,9 @@ namespace ArmariosPorMedidaAPI.Models
 {
    public class Restricao {
 
-       public int ID { get; set; }
+       public long ID { get; set; }
 
-       public int IDRestrito { get; set; }
+       public long IDRestrito { get; set; }
 
    }
 }

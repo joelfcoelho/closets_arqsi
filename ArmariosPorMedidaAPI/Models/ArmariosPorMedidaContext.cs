@@ -9,6 +9,6 @@ namespace ArmariosPorMedidaAPI.Models
         {
         }
 
-       // public DbSet<ArmariosPorMedidaItem> ArmariosPorMedidaItems { get; set; }
+       public DbSet<Produto> Produtos { get; set; }
     }
 }

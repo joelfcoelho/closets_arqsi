@@ -28,7 +28,7 @@ namespace ArmariosPorMedidaAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ArmariosPorMedidaContext>(opt => 
-                opt.UseInMemoryDatabase("ArmariosPorMedidaList"));
+                opt.UseInMemoryDatabase("ProdutosList"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

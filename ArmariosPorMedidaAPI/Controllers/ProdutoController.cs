@@ -15,12 +15,12 @@ namespace ArmariosPorMedidaAPI.Controllers
         {
             _context = context;
 
-           if (_context.Produtos.Count() == 0)
+          /* if (_context.Produtos.Count() == 0)
             {
                 //Cria novo produto
                 _context.Produtos.Add(new Produto { Nome = "Produto1" });
                 _context.SaveChanges();
-            }
+            }*/
 
         }
 
@@ -85,6 +85,33 @@ namespace ArmariosPorMedidaAPI.Controllers
             _context.SaveChanges();
             return NoContent();
         }
+
+/*
+         [Route("api/MaterialAcabamento")]
+        
+        
+        //GET api/materialAcabamento/{id}
+        [HttpGet("{id}", Name = "GetMaterialAcabamento")]
+        public ActionResult<string> GetAcabamentoById(long id)
+        {
+            var acabamento = _context.Acabamentos.Find(id);
+            if (acabamento == null)
+            {
+                return NotFound();
+            }
+
+            var material =_context.Materiais.GetAll;
+            var matAcab;
+            for(int i=0;i<material.Count;i++){
+                if(material[i].acabamento==acabamento){
+                    matAcab=material[i];
+                }
+            }
+
+            string result= "MaterialID="+matAcab.ID +"\nMaterialNome:"+matAcab.nome + "\nAcabamentoID="+ id + "\nNomeAcabamento:"+ acabamento.nome;
+            return result;
+        }
+*/
 
     }
 }

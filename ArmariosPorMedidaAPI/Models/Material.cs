@@ -10,8 +10,10 @@ namespace ArmariosPorMedidaAPI.Models
    public class Material {
 
        public long ID { get; set; }
-
+        public long AcabamentoId{get;set;}
        public string Nome { get; set; }
+
+       public virtual Acabamento Acabamento{ get; set; }
 
    }
 }

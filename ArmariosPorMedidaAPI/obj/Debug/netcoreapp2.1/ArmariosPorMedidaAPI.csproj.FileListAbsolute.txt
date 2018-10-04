@@ -26,3 +26,17 @@ C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\Ar
 C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.RazorTargetAssemblyInfo.cache
 C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.dll
 C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.pdb
+C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.deps.json
+C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.runtimeconfig.json
+C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.runtimeconfig.dev.json
+C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.dll
+C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.pdb
+C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.csprojAssemblyReference.cache
+C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.csproj.CoreCompileInputs.cache
+C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.RazorAssemblyInfo.cache
+C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.RazorAssemblyInfo.cs
+C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.AssemblyInfoInputs.cache
+C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.AssemblyInfo.cs
+C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.RazorTargetAssemblyInfo.cache
+C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.dll
+C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.pdb

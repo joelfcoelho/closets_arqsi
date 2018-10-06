@@ -1,11 +1,17 @@
-using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using ArmariosPorMedidaAPI.Models;
 
 namespace ArmariosPorMedidaAPI.Controllers
 {
-    [Route("api/Produto")]
+    
+    [Route("api/produto")]
     [ApiController]
     public class ProdutoController : ControllerBase
     {
@@ -15,25 +21,166 @@ namespace ArmariosPorMedidaAPI.Controllers
         {
             _context = context;
 
-          /* if (_context.Produtos.Count() == 0)
-            {
-                //Cria novo produto
-                _context.Produtos.Add(new Produto { Nome = "Produto1" });
-                _context.SaveChanges();
-            }*/
-
         }
 
-        //GET api/produto
         [HttpGet]
-        public ActionResult<List<Produto>> GetAll()
+        public IEnumerable<DTOs.ProdutoDTO> GetProduto()
         {
-            return _context.Produtos.ToList();
+            var produto = from p in _context.Produtos
+                            select new DTOs.ProdutoDTO()
+                            {
+                                ID = p.ID,
+                                Nome = p.Nome,
+
+                            };
+            return produto;
         }
 
-        //GET api/produto/{id}
-        [HttpGet("{id}", Name = "GetProduto")]
-        public ActionResult<Produto> GetById(long id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProduto([FromRoute] int id)
+        {
+            var produto = await _context.Produtos.Select(p =>
+            new DTOs.ProdutoDTO()
+            {
+                ID = p.ID,
+                Nome = p.Nome
+            }).SingleOrDefaultAsync(p => p.ID == id);
+
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(produto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(produto);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostProduto([FromBody] Produto produto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _context.Produtos.Add(produto);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetProduto", new { id = produto.ID }, produto);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutProduto([FromRoute] int id, [FromBody] Produto produto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != produto.ID)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(produto).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProdutoExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduto([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var produto = await _context.Produtos.SingleOrDefaultAsync(p => p.ID == id);
+            if (produto == null)
+            {
+                return NotFound();
+            }
+
+            _context.Produtos.Remove(produto);
+            await _context.SaveChangesAsync();
+
+            return Ok(produto);
+        }
+
+        [HttpGet("{id}/Partes")]
+        public IActionResult GetPartes([FromRoute] int id)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Produto produto = _context.Produtos.SingleOrDefault(p => p.ID == id);
+
+            if(produto == null)
+            {
+                return NotFound();
+            }
+
+            var listPartes = _context.Produtos.Where<Produto>(l => l.ID == id).Select(p => 
+            new DTOs.ProdutoDTO()
+            {
+                ID = p.ID
+            }); ;
+
+            return Ok(listPartes);
+
+        }
+
+        //GET api/produto/?nome={nome}
+        [HttpGet("nome={nome}")]
+        public async Task<IActionResult> GetByNameAsync([FromRoute] string nome){
+
+            var produto = await _context.Produtos.Select(p => 
+            new DTOs.ProdutoDTO()
+            {
+                ID = p.ID,
+                Nome = p.Nome
+            }).SingleOrDefaultAsync(p => p.Nome == nome);
+
+
+            if (!ModelState.IsValid) 
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (produto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(produto);
+
+        }
+        
+        /*//GET api/produto/{id}
+        [HttpGet("{id}")]
+        public ActionResult<Produto> GetById(int id)
         {
             var prod = _context.Produtos.Find(id);
             if (prod == null)
@@ -41,9 +188,9 @@ namespace ArmariosPorMedidaAPI.Controllers
                 return NotFound();
             }
             return prod;
-        }
+        }*/
 
-        //CREATE
+        /*//CREATE
         [HttpPost]
         public IActionResult Create(Produto prod)
         {
@@ -51,11 +198,11 @@ namespace ArmariosPorMedidaAPI.Controllers
             _context.SaveChanges();
 
             return CreatedAtRoute("GetProduto", new { id = prod.ID }, prod);
-        }
+        }*/
 
-        //UPDATE
+        /*//UPDATE
         [HttpPut("{id}")]
-        public IActionResult Update(long id, Produto prod)
+        public IActionResult Update(int id, Produto prod)
         {
             var produto = _context.Produtos.Find(id);
             if (produto == null)
@@ -69,11 +216,11 @@ namespace ArmariosPorMedidaAPI.Controllers
             _context.Produtos.Update(produto);
             _context.SaveChanges();
             return NoContent();
-        }
+        }*/
 
-        //DELETE
+        /*//DELETE
         [HttpDelete("{id}")]
-        public IActionResult Delete(long id)
+        public IActionResult Delete(int id)
         {
             var todo = _context.Produtos.Find(id);
             if (todo == null)
@@ -84,7 +231,10 @@ namespace ArmariosPorMedidaAPI.Controllers
             _context.Produtos.Remove(todo);
             _context.SaveChanges();
             return NoContent();
-        }
+        }*/
+
+        
+        
 
 /*
          [Route("api/MaterialAcabamento")]
@@ -92,7 +242,7 @@ namespace ArmariosPorMedidaAPI.Controllers
         
         //GET api/materialAcabamento/{id}
         [HttpGet("{id}", Name = "GetMaterialAcabamento")]
-        public ActionResult<string> GetAcabamentoById(long id)
+        public ActionResult<string> GetAcabamentoById(int id)
         {
             var acabamento = _context.Acabamentos.Find(id);
             if (acabamento == null)
@@ -112,6 +262,12 @@ namespace ArmariosPorMedidaAPI.Controllers
             return result;
         }
 */
+
+
+        private bool ProdutoExists(int id)
+        {
+            return _context.Produtos.Any(p => p.ID == id);
+        }
 
     }
 }

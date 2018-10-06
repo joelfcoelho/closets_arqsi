@@ -33,7 +33,7 @@ namespace ArmariosPorMedidaAPI.Controllers
 
         //GET api/categoria/{id}
         [HttpGet("{id}", Name = "GetCategoria")]
-        public ActionResult<Categoria> GetById(long id)
+        public ActionResult<Categoria> GetById(int id)
         {
             var cat = _context.Categorias.Find(id);
             if (cat == null)
@@ -56,7 +56,7 @@ namespace ArmariosPorMedidaAPI.Controllers
 
         //DELETE
         [HttpDelete("{id}")]
-        public IActionResult Delete(long id)
+        public IActionResult Delete(int id)
         {
             var todo = _context.Categorias.Find(id);
             if (todo == null)

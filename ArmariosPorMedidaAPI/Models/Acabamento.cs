@@ -9,7 +9,7 @@ namespace ArmariosPorMedidaAPI.Models
 {
    public class Acabamento {
 
-       public long ID { get; set; }
+       public int ID { get; set; }
 
        public string Nome { get; set; }
 

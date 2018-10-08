@@ -23,6 +23,8 @@ namespace ArmariosPorMedidaAPI.Controllers
 
         }
 
+
+        //GET api/produto
         [HttpGet]
         public IEnumerable<DTOs.ProdutoDTO> GetProduto()
         {
@@ -30,12 +32,12 @@ namespace ArmariosPorMedidaAPI.Controllers
                             select new DTOs.ProdutoDTO()
                             {
                                 ID = p.ID,
-                                Nome = p.Nome,
-
+                                Nome = p.Nome
                             };
             return produto;
         }
 
+        //GET api/produto/{id}
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduto([FromRoute] int id)
         {
@@ -59,6 +61,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             return Ok(produto);
         }
 
+        //POST api/produto
         [HttpPost]
         public async Task<IActionResult> PostProduto([FromBody] Produto produto)
         {
@@ -73,6 +76,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             return CreatedAtAction("GetProduto", new { id = produto.ID }, produto);
         }
 
+        //PUT api/produto/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduto([FromRoute] int id, [FromBody] Produto produto)
         {
@@ -107,6 +111,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             return NoContent();
         }
 
+        //DELETE api/produto/{id}
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduto([FromRoute] int id)
         {
@@ -127,6 +132,8 @@ namespace ArmariosPorMedidaAPI.Controllers
             return Ok(produto);
         }
 
+
+        //GET api/produto/{id}/partes
         [HttpGet("{id}/Partes")]
         public IActionResult GetPartes([FromRoute] int id)
         {
@@ -152,6 +159,8 @@ namespace ArmariosPorMedidaAPI.Controllers
 
         }
 
+        //GET api/produto/{id}/parteem
+
         //GET api/produto/?nome={nome}
         [HttpGet("nome={nome}")]
         public async Task<IActionResult> GetByNameAsync([FromRoute] string nome){
@@ -176,6 +185,12 @@ namespace ArmariosPorMedidaAPI.Controllers
 
             return Ok(produto);
 
+        }
+
+        //Verifica se produto com ID id já existe
+        private bool ProdutoExists(int id)
+        {
+            return _context.Produtos.Any(p => p.ID == id);
         }
         
         /*//GET api/produto/{id}
@@ -263,11 +278,7 @@ namespace ArmariosPorMedidaAPI.Controllers
         }
 */
 
-
-        private bool ProdutoExists(int id)
-        {
-            return _context.Produtos.Any(p => p.ID == id);
-        }
+        
 
     }
 }

@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArmariosPorMedidaAPI.Models
+namespace ArmariosPorMedidaAPI.DTOs
 {
-   public class Restricao {
+   public class ProdutoRestricaoDTO {
 
        public int ID { get; set; }
-       public string Nome { get; set; }
+       public int ProdutoID { get; set; }
+       public int RestricaoID { get; set; }
 
    }
 }

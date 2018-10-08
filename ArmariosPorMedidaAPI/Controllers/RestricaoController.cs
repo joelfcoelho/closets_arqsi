@@ -1,7 +1,13 @@
-using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using ArmariosPorMedidaAPI.Models;
+
 
 namespace ArmariosPorMedidaAPI.Controllers
 {
@@ -15,58 +21,124 @@ namespace ArmariosPorMedidaAPI.Controllers
         {
             _context = context;
 
-           /*if (_context.Restricoes.Count() == 0)
-            {
-                //Cria nova restricao
-                _context.Restricoes.Add(new Restricao { ID=1 });
-                _context.SaveChanges();
-            }*/
-
         }
+
 
         //GET api/restricao
         [HttpGet]
-        public ActionResult<List<Restricao>> GetAll()
+        public IEnumerable<DTOs.RestricaoDTO> GetRestricao()
         {
-            return _context.Restricoes.ToList();
+            var restricao = from r in _context.Restricoes
+                            select new DTOs.RestricaoDTO()
+                            {
+                                ID = r.ID,
+                                Nome = r.Nome
+                            };
+            return restricao;
         }
 
         //GET api/restricao/{id}
-        [HttpGet("{id}", Name = "GetRestricao")]
-        public ActionResult<Restricao> GetById(int id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetRestricao([FromRoute] int id)
         {
-            var rest = _context.Restricoes.Find(id);
-            if (rest == null)
+            var restricao = await _context.Restricoes.Select(r =>
+            new DTOs.RestricaoDTO()
+            {
+                ID = r.ID,
+                Nome = r.Nome
+            }).SingleOrDefaultAsync(r => r.ID == id);
+
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(restricao == null)
             {
                 return NotFound();
             }
-            return rest;
+
+            return Ok(restricao);
         }
 
-        //CREATE
+        //POST api/restricao
         [HttpPost]
-        public IActionResult Create(Restricao rest)
+        public async Task<IActionResult> PostRestricao([FromBody] Restricao restricao)
         {
-            _context.Restricoes.Add(rest);
-            _context.SaveChanges();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            return CreatedAtRoute("GetRestricao", new { id = rest.ID }, rest);
+            _context.Restricoes.Add(restricao);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetRestricao", new { id = restricao.ID }, restricao);
         }
 
 
-        //DELETE
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        //PUT api/restricao/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutRestricao([FromRoute] int id, [FromBody] Restricao restricao)
         {
-            var todo = _context.Restricoes.Find(id);
-            if (todo == null)
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != restricao.ID)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(restricao).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RestricaoExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        //DELETE api/restricao/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRestricao([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var restricao = await _context.Restricoes.SingleOrDefaultAsync(r => r.ID == id);
+            if (restricao == null)
             {
                 return NotFound();
             }
 
-            _context.Restricoes.Remove(todo);
-            _context.SaveChanges();
-            return NoContent();
+            _context.Restricoes.Remove(restricao);
+            await _context.SaveChangesAsync();
+
+            return Ok(restricao);
+        }
+
+
+        //Verifica se restricao com ID id já existe
+        private bool RestricaoExists(int id)
+        {
+            return _context.Restricoes.Any(r => r.ID == id);
         }
 
     }

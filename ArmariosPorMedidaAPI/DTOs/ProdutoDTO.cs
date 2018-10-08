@@ -18,8 +18,9 @@ namespace ArmariosPorMedidaAPI.DTOs
         public double Altura {get ; set; }
         public double Largura {get ; set; }
         public double Profundidade {get ; set; }
-        public virtual ICollection<Produto> Partes { get; set; }
-        public virtual ICollection<Produto> ParteEm { get; set; }
+        public virtual ICollection<int> Partes { get; set; }
+        public virtual ICollection<int> ParteEm { get; set; }
+        
 
 
     }

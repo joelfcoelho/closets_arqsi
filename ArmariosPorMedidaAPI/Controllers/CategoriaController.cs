@@ -75,6 +75,68 @@ namespace ArmariosPorMedidaAPI.Controllers
             return CreatedAtAction("GetCategoria", new { id = categoria.ID }, categoria);
         }
 
+        //PUT api/categoria/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutCategoria([FromRoute] int id, [FromBody] Categoria categoria)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != categoria.ID)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(categoria).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CategoriaExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        //DELETE api/categoria/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCategoria([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var categoria = await _context.Categorias.SingleOrDefaultAsync(c => c.ID == id);
+            if (categoria == null)
+            {
+                return NotFound();
+            }
+
+            _context.Categorias.Remove(categoria);
+            await _context.SaveChangesAsync();
+
+            return Ok(categoria);
+        }
+
+          //Verifica se a categoria com ID id já existe
+        private bool CategoriaExists(int id)
+        {
+            return _context.Categorias.Any(c => c.ID == id);
+        }
+
 /*
         //GET api/categoria
         [HttpGet]

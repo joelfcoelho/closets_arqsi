@@ -15,11 +15,17 @@ namespace ArmariosPorMedidaAPI.Models
         public double Altura {get ; set; }
         public double Largura {get ; set; }
         public double Profundidade {get ; set; }
-        /*public virtual ICollection<int> Partes { get; set; }
-        public virtual ICollection<int> ParteEm { get; set; }
-        public virtual ICollection<int> Restricoes { get; set; }*/
+
+        public virtual ICollection<Parte> Partes { get; set; }
+        public virtual ICollection<Restricao> Restricoes { get; set; }
+        
+        public int? CategoriaID { get; set; }
         public virtual Categoria Categoria { get; set; }
+
+        public int? MaterialID { get; set; }
         public virtual Material Material { get; set; }
+
+        public int? AcabamentoID { get; set; }
         public virtual Acabamento Acabamento{ get; set; }
     }
 }

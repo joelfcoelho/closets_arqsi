@@ -193,61 +193,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             return _context.Produtos.Any(p => p.ID == id);
         }
         
-        /*//GET api/produto/{id}
-        [HttpGet("{id}")]
-        public ActionResult<Produto> GetById(int id)
-        {
-            var prod = _context.Produtos.Find(id);
-            if (prod == null)
-            {
-                return NotFound();
-            }
-            return prod;
-        }*/
-
-        /*//CREATE
-        [HttpPost]
-        public IActionResult Create(Produto prod)
-        {
-            _context.Produtos.Add(prod);
-            _context.SaveChanges();
-
-            return CreatedAtRoute("GetProduto", new { id = prod.ID }, prod);
-        }*/
-
-        /*//UPDATE
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, Produto prod)
-        {
-            var produto = _context.Produtos.Find(id);
-            if (produto == null)
-            {
-                return NotFound();
-            }
-
-            //Actualiza nome - acrescentar actualizacoes necessarias
-            produto.Nome = prod.Nome;
-
-            _context.Produtos.Update(produto);
-            _context.SaveChanges();
-            return NoContent();
-        }*/
-
-        /*//DELETE
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            var todo = _context.Produtos.Find(id);
-            if (todo == null)
-            {
-                return NotFound();
-            }
-
-            _context.Produtos.Remove(todo);
-            _context.SaveChanges();
-            return NoContent();
-        }*/
-
+        
         
         
 

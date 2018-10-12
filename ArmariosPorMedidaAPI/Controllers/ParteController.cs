@@ -30,7 +30,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             var parte = from p in _context.Partes
                             select new DTOs.ParteDTO()
                             {
-                                ID = p.ID,
+                                ParteID = p.ParteID,
                                 Nome = p.Nome
                             };
             return parte;
@@ -43,9 +43,9 @@ namespace ArmariosPorMedidaAPI.Controllers
             var parte = await _context.Partes.Select(p =>
             new DTOs.ParteDTO()
             {
-                ID = p.ID,
+                ParteID = p.ParteID,
                 Nome = p.Nome
-            }).SingleOrDefaultAsync(p => p.ID == id);
+            }).SingleOrDefaultAsync(p => p.ParteID == id);
 
             if(!ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             _context.Partes.Add(parte);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetParte", new { id = parte.ID }, parte);
+            return CreatedAtAction("GetParte", new { id = parte.ParteID }, parte);
         }
 
         //PUT api/parte/{id}
@@ -84,7 +84,7 @@ namespace ArmariosPorMedidaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != parte.ID)
+            if (id != parte.ParteID)
             {
                 return BadRequest();
             }
@@ -119,7 +119,7 @@ namespace ArmariosPorMedidaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var parte = await _context.Partes.SingleOrDefaultAsync(p => p.ID == id);
+            var parte = await _context.Partes.SingleOrDefaultAsync(p => p.ParteID == id);
             if (parte == null)
             {
                 return NotFound();
@@ -134,7 +134,7 @@ namespace ArmariosPorMedidaAPI.Controllers
         //Verifica se parte com ID id já existe
         private bool ParteExists(int id)
         {
-            return _context.Partes.Any(p => p.ID == id);
+            return _context.Partes.Any(p => p.ParteID == id);
         }
 
 

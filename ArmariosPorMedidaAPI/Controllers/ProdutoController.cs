@@ -21,6 +21,24 @@ namespace ArmariosPorMedidaAPI.Controllers
         {
             _context = context;
 
+            if (_context.Produtos.Count() == 0)
+            {
+                _context.Produtos.Add(new Produto() {ProdutoID=1, Nome="product1", Preco=100 });
+                _context.Produtos.Add(new Produto() {ProdutoID=2, Nome="product2" });
+                _context.Partes.Add(new Parte() {ParteID=1, Nome="part1" });
+                _context.Partes.Add(new Parte() {ParteID=2, Nome="part2" });
+                _context.Partes.Add(new Parte() {ParteID=3, Nome="part3" });
+                _context.ProdutoPartes.Add(new ProdutoParte() {ProdutoID=1, ParteID=1 });
+                _context.ProdutoPartes.Add(new ProdutoParte() {ProdutoID=2, ParteID=1 });
+                _context.ProdutoPartes.Add(new ProdutoParte() {ProdutoID=1, ParteID=2 });
+                _context.ProdutoPartes.Add(new ProdutoParte() {ProdutoID=1, ParteID=3 });
+                _context.Restricoes.Add(new Restricao() {RestricaoID=1, Nome="caber"});
+                _context.Restricoes.Add(new Restricao() {RestricaoID=2, Nome="caber2"});
+                _context.ProdutoRestricoes.Add(new ProdutoRestricao() {ProdutoID=1, RestricaoID=1 });
+                _context.ProdutoRestricoes.Add(new ProdutoRestricao() {ProdutoID=1, RestricaoID=2 });
+                _context.SaveChanges();
+            }
+
         }
 
 
@@ -31,7 +49,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             var produto = from p in _context.Produtos
                             select new DTOs.ProdutoDTO()
                             {
-                                ID = p.ID,
+                                ProdutoID = p.ProdutoID,
                                 Nome = p.Nome
                             };
             return produto;
@@ -44,9 +62,10 @@ namespace ArmariosPorMedidaAPI.Controllers
             var produto = await _context.Produtos.Select(p =>
             new DTOs.ProdutoDTO()
             {
-                ID = p.ID,
-                Nome = p.Nome
-            }).SingleOrDefaultAsync(p => p.ID == id);
+                ProdutoID = p.ProdutoID,
+                Nome = p.Nome,
+                Preco = p.Preco
+            }).SingleOrDefaultAsync(p => p.ProdutoID == id);
 
             if(!ModelState.IsValid)
             {
@@ -73,7 +92,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             _context.Produtos.Add(produto);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProduto", new { id = produto.ID }, produto);
+            return CreatedAtAction("GetProduto", new { id = produto.ProdutoID }, produto);
         }
 
         //PUT api/produto/{id}
@@ -85,7 +104,7 @@ namespace ArmariosPorMedidaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != produto.ID)
+            if (id != produto.ProdutoID)
             {
                 return BadRequest();
             }
@@ -120,7 +139,7 @@ namespace ArmariosPorMedidaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var produto = await _context.Produtos.SingleOrDefaultAsync(p => p.ID == id);
+            var produto = await _context.Produtos.SingleOrDefaultAsync(p => p.ProdutoID == id);
             if (produto == null)
             {
                 return NotFound();
@@ -142,41 +161,85 @@ namespace ArmariosPorMedidaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            Produto produto = _context.Produtos.SingleOrDefault(p => p.ID == id);
+            Produto produto = _context.Produtos.SingleOrDefault(p => p.ProdutoID == id);
 
             if(produto == null)
             {
                 return NotFound();
             }
 
-            var listPartes = _context.Produtos.Where<Produto>(l => l.ID == id).Select(p => 
-            new DTOs.ProdutoDTO()
-            {
-                ID = p.ID
-            }); ;
+            var parts = _context.ProdutoPartes.Where(p => p.ProdutoID == id).Select(p =>p.Parte).ToList();
 
-            return Ok(listPartes);
+            //var parts = _context.Partes.Where(p => p.ProdutoPartes.Any(pp => pp.ProdutoID == id)).ToList();
+
+                     
+
+            return Ok(parts);
 
         }
 
-        //GET api/produto/{id}/parteem
+        //GET api/produto/{id}/parteEm
+        [HttpGet("{id}/ParteEm")]
+        public IActionResult GetPartesEm([FromRoute] int id)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Parte parte = _context.Partes.SingleOrDefault(p => p.ParteID == id);
+
+            if(parte == null)
+            {
+                return NotFound();
+            }
+
+            var parts = _context.ProdutoPartes.Where(p => p.ParteID == id).Select(p =>p.Produto).ToList();
+
+            return Ok(parts);
+
+        }
+
+
+        //GET api/produto/{id}/Restricoes
+        [HttpGet("{id}/Restricoes")]
+        public IActionResult GetRestricoes([FromRoute] int id)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Produto produto = _context.Produtos.SingleOrDefault(p => p.ProdutoID == id);
+
+            if(produto == null)
+            {
+                return NotFound();
+            }
+
+            var restricoes = _context.ProdutoRestricoes.Where(p => p.ProdutoID == id).Select(p =>p.Restricao).ToList();
+
+            return Ok(restricoes);
+
+        }
+
 
         //GET api/produto/?nome={nome}
         [HttpGet("nome={nome}")]
         public async Task<IActionResult> GetByNameAsync([FromRoute] string nome){
 
-            var produto = await _context.Produtos.Select(p => 
-            new DTOs.ProdutoDTO()
-            {
-                ID = p.ID,
-                Nome = p.Nome
-            }).SingleOrDefaultAsync(p => p.Nome == nome);
-
-
+            
             if (!ModelState.IsValid) 
             {
                 return BadRequest(ModelState);
             }
+
+            var produto = await _context.Produtos.Select(p => 
+            new DTOs.ProdutoDTO()
+            {
+                ProdutoID = p.ProdutoID,
+                Nome = p.Nome
+            }).SingleOrDefaultAsync(p => p.Nome == nome);
 
             if (produto == null)
             {
@@ -190,7 +253,7 @@ namespace ArmariosPorMedidaAPI.Controllers
         //Verifica se produto com ID id já existe
         private bool ProdutoExists(int id)
         {
-            return _context.Produtos.Any(p => p.ID == id);
+            return _context.Produtos.Any(p => p.ProdutoID == id);
         }
         
         

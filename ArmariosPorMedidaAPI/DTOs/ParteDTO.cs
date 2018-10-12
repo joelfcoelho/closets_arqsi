@@ -8,7 +8,7 @@ namespace ArmariosPorMedidaAPI.DTOs
 {
    public class ParteDTO
     {
-        public int ID { get; set; }
+        public int ParteID { get; set; }
         public string Nome { get; set; }
         public double Preco { get; set; }
         public double Altura {get ; set; }

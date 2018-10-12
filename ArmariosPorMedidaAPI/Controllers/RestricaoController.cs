@@ -31,7 +31,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             var restricao = from r in _context.Restricoes
                             select new DTOs.RestricaoDTO()
                             {
-                                ID = r.ID,
+                                ID = r.RestricaoID,
                                 Nome = r.Nome
                             };
             return restricao;
@@ -44,7 +44,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             var restricao = await _context.Restricoes.Select(r =>
             new DTOs.RestricaoDTO()
             {
-                ID = r.ID,
+                ID = r.RestricaoID,
                 Nome = r.Nome
             }).SingleOrDefaultAsync(r => r.ID == id);
 
@@ -73,7 +73,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             _context.Restricoes.Add(restricao);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRestricao", new { id = restricao.ID }, restricao);
+            return CreatedAtAction("GetRestricao", new { id = restricao.RestricaoID }, restricao);
         }
 
 
@@ -86,7 +86,7 @@ namespace ArmariosPorMedidaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != restricao.ID)
+            if (id != restricao.RestricaoID)
             {
                 return BadRequest();
             }
@@ -122,7 +122,7 @@ namespace ArmariosPorMedidaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var restricao = await _context.Restricoes.SingleOrDefaultAsync(r => r.ID == id);
+            var restricao = await _context.Restricoes.SingleOrDefaultAsync(r => r.RestricaoID == id);
             if (restricao == null)
             {
                 return NotFound();
@@ -138,7 +138,7 @@ namespace ArmariosPorMedidaAPI.Controllers
         //Verifica se restricao com ID id já existe
         private bool RestricaoExists(int id)
         {
-            return _context.Restricoes.Any(r => r.ID == id);
+            return _context.Restricoes.Any(r => r.RestricaoID == id);
         }
 
     }

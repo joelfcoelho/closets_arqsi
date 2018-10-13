@@ -27,8 +27,8 @@ namespace ArmariosPorMedidaAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ArmariosPorMedidaContext>(opt => 
-                opt.UseInMemoryDatabase("ProdutosList"));
+            services.AddDbContext<ArmariosPorMedidaContext>(options =>
+                    options.UseSqlServer(@"Server=localhost\SQLExpress;Database=ArmariosPorMedida;Trusted_Connection=true"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

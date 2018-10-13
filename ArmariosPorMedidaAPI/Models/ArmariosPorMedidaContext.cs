@@ -9,17 +9,21 @@ namespace ArmariosPorMedidaAPI.Models
             : base(options)
         {
         }
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server=localhost\SQLExpress;Database=ArmariosPorMedida;Trusted_Connection=true");
+        }
+        
         public DbSet<Produto> Produtos { get; set; }
-        public DbSet<Restricao> Restricoes {get;set;}
-        public DbSet<Categoria> Categorias {get;set;}
-        public DbSet<Material> Materiais {get;set;}
-        public DbSet<Acabamento> Acabamentos {get;set;}
-        public DbSet<Parte> Partes {get;set;}
+        public DbSet<Restricao> Restricoes { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Material> Materiais { get; set; }
+        public DbSet<Acabamento> Acabamentos { get; set; }
+        public DbSet<Parte> Partes { get; set; }
         public DbSet<ProdutoParte> ProdutoPartes { get; set; }
         public DbSet<ProdutoRestricao> ProdutoRestricoes { get; set; }
- 
-         protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Produto * * Parte
             modelBuilder.Entity<ProdutoParte>()
@@ -50,9 +54,9 @@ namespace ArmariosPorMedidaAPI.Models
                 .WithMany(r => r.ProdutoRestricoes)
                 .HasForeignKey(pp => pp.RestricaoID);
         }
-    
+
     }
 
-    
+
 
 }

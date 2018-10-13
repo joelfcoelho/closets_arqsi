@@ -40,3 +40,17 @@ C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorM
 C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.RazorTargetAssemblyInfo.cache
 C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.dll
 C:\Users\hp\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.pdb
+C:\Users\hp\Desktop\TerceiroAno\ARQSI\Codigo\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.deps.json
+C:\Users\hp\Desktop\TerceiroAno\ARQSI\Codigo\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.runtimeconfig.json
+C:\Users\hp\Desktop\TerceiroAno\ARQSI\Codigo\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.runtimeconfig.dev.json
+C:\Users\hp\Desktop\TerceiroAno\ARQSI\Codigo\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.dll
+C:\Users\hp\Desktop\TerceiroAno\ARQSI\Codigo\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.pdb
+C:\Users\hp\Desktop\TerceiroAno\ARQSI\Codigo\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.csprojAssemblyReference.cache
+C:\Users\hp\Desktop\TerceiroAno\ARQSI\Codigo\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.csproj.CoreCompileInputs.cache
+C:\Users\hp\Desktop\TerceiroAno\ARQSI\Codigo\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.RazorAssemblyInfo.cache
+C:\Users\hp\Desktop\TerceiroAno\ARQSI\Codigo\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.RazorAssemblyInfo.cs
+C:\Users\hp\Desktop\TerceiroAno\ARQSI\Codigo\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.AssemblyInfoInputs.cache
+C:\Users\hp\Desktop\TerceiroAno\ARQSI\Codigo\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.AssemblyInfo.cs
+C:\Users\hp\Desktop\TerceiroAno\ARQSI\Codigo\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.RazorTargetAssemblyInfo.cache
+C:\Users\hp\Desktop\TerceiroAno\ARQSI\Codigo\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.dll
+C:\Users\hp\Desktop\TerceiroAno\ARQSI\Codigo\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.pdb

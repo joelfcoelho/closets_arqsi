@@ -16,6 +16,7 @@ namespace ArmariosPorMedidaAPI.Models
        //public virtual Categoria SuperCategoria { get; set; }
 
        public virtual ICollection<Categoria> SubCategorias { get; set; }
+       public List<Produto> Produtos { get; set; }
 
    }
 }

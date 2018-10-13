@@ -10,7 +10,7 @@ namespace ArmariosPorMedidaAPI.DTOs
    public class RestricaoDTO 
    {
 
-       public int ID { get; set; }
+       public int RestricaoID { get; set; }
        public string Nome { get; set; }
 
    }

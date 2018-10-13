@@ -6,14 +6,12 @@ using ArmariosPorMedidaAPI.Models;
 
 namespace ArmariosPorMedidaAPI.DTOs
 {
-    public class CategoriaDTO
+    public class MaterialDTO
     {
         
-       public int ID { get; set; }
+       public int MaterialID { get; set; }
 
        public string Nome { get; set; }
-       public virtual ICollection<int> SubCategorias { get; set; }   
-
 
     }
 }

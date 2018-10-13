@@ -19,14 +19,14 @@ namespace ArmariosPorMedidaAPI.Models
         public virtual ICollection<ProdutoParte> ProdutoPartes { get; set; }
         
         public virtual ICollection<ProdutoRestricao> ProdutoRestricoes { get; set; }
-        
-        /* public int? CategoriaID { get; set; }
-        public virtual Categoria Categoria { get; set; }
 
         public int? MaterialID { get; set; }
         public virtual Material Material { get; set; }
-
+        public int? CategoriaID { get; set; }
+        public virtual Categoria Categoria { get; set; }
         public int? AcabamentoID { get; set; }
-        public virtual Acabamento Acabamento{ get; set; }*/
+        public virtual Acabamento Acabamento { get; set; }
+
+
     }
 }

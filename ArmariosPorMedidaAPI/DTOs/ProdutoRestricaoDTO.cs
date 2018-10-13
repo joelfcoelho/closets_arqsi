@@ -10,10 +10,10 @@ public class ProdutoRestricaoTO
     {
         
         public int ProdutoID { get; set; }
-        public Produto Produto { get; set; }
+        //public Produto Produto { get; set; }
 
         public int RestricaoID { get; set; }
-        public Restricao Restricao { get; set; }
+        //public Restricao Restricao { get; set; }
     }
 
 }

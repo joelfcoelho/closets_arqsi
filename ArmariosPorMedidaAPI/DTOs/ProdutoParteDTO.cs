@@ -10,10 +10,10 @@ public class ProdutoParteDTO
     {
         
         public int ProdutoID { get; set; }
-        public Produto Produto { get; set; }
+        //public Produto Produto { get; set; }
 
         public int ParteID { get; set; }
-        public Parte Parte { get; set; }
+        //public Parte Parte { get; set; }
     }
 
 }

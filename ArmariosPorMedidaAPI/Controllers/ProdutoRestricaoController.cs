@@ -11,14 +11,14 @@ using ArmariosPorMedidaAPI.Models;
 namespace ArmariosPorMedidaAPI.Controllers
 {
     
-    [Route("api/produto/parte")]
+    [Route("api/produto/restricao")]
     [ApiController]
 
-     public class ProdutoParteController : ControllerBase
+     public class ProdutoRestricaoController : ControllerBase
     {
         private readonly ArmariosPorMedidaContext _context;
 
-        public ProdutoParteController(ArmariosPorMedidaContext context)
+        public ProdutoRestricaoController(ArmariosPorMedidaContext context)
         {
             _context = context;
 
@@ -28,26 +28,26 @@ namespace ArmariosPorMedidaAPI.Controllers
 
         
         [HttpGet]
-        public IEnumerable<DTOs.ProdutoParteDTO> GetProdutoParte()
+        public IEnumerable<DTOs.ProdutoRestricaoTO> GetProdutoRestricao()
         {
-            var produtoparte = from p in _context.ProdutoPartes
-                            select new DTOs.ProdutoParteDTO()
+            var produtorestricao = from p in _context.ProdutoRestricoes
+                            select new DTOs.ProdutoRestricaoTO()
                             {
                                 ProdutoID = p.ProdutoID,
-                                ParteID = p.ParteID
+                                RestricaoID = p.RestricaoID
                             };
-            return produtoparte;
+            return produtorestricao;
         }
 
         
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProdutoParte([FromRoute] int id)
+        public async Task<IActionResult> GetProdutoRestricao([FromRoute] int id)
         {
-            var produto = await _context.ProdutoPartes.Select(p =>
-            new DTOs.ProdutoParteDTO()
+            var produto = await _context.ProdutoRestricoes.Select(p =>
+            new DTOs.ProdutoRestricaoTO()
             {
                 ProdutoID = p.ProdutoID,
-                ParteID = p.ParteID
+                RestricaoID = p.RestricaoID
             }).SingleOrDefaultAsync(p => p.ProdutoID == id);
 
             if(!ModelState.IsValid)
@@ -63,19 +63,19 @@ namespace ArmariosPorMedidaAPI.Controllers
             return Ok(produto);
         }
 
-        //POST api/produto/parte
+        //POST api/produto/restricao
         [HttpPost]
-        public async Task<IActionResult> PostProdutoParte([FromBody] ProdutoParte produtoparte)
+        public async Task<IActionResult> PostProdutoRestricao([FromBody] ProdutoRestricao produtorestricao)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.ProdutoPartes.Add(produtoparte);
+            _context.ProdutoRestricoes.Add(produtorestricao);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetProdutoParte", new { id = produtoparte.ProdutoID }, produtoparte);
+            return CreatedAtAction("GetProdutoRestricao", new { id = produtorestricao.ProdutoID }, produtorestricao);
         }
     }
 

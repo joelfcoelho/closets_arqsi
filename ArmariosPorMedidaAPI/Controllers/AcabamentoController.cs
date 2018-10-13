@@ -11,87 +11,87 @@ using ArmariosPorMedidaAPI.Models;
 
 namespace ArmariosPorMedidaAPI.Controllers
 {
-    [Route("api/Restricao")]
+    [Route("api/Acabamento")]
     [ApiController]
-    public class RestricaoController : ControllerBase
+    public class AcabamentoController : ControllerBase
     {
         private readonly ArmariosPorMedidaContext _context;
 
-        public RestricaoController(ArmariosPorMedidaContext context)
+        public AcabamentoController(ArmariosPorMedidaContext context)
         {
             _context = context;
 
         }
 
 
-        //GET api/restricao
+        //GET api/acabamento
         [HttpGet]
-        public IEnumerable<DTOs.RestricaoDTO> GetRestricao()
+        public IEnumerable<DTOs.AcabamentoDTO> GetAcabamento()
         {
-            var restricao = from r in _context.Restricoes
-                            select new DTOs.RestricaoDTO()
+            var acabamento = from r in _context.Acabamentos
+                            select new DTOs.AcabamentoDTO()
                             {
-                                RestricaoID = r.RestricaoID,
+                                AcabamentoID = r.AcabamentoID,
                                 Nome = r.Nome
                             };
-            return restricao;
+            return acabamento;
         }
 
-        //GET api/restricao/{id}
+        //GET api/acabamento/{id}
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetRestricao([FromRoute] int id)
+        public async Task<IActionResult> GetAcabamento([FromRoute] int id)
         {
-            var restricao = await _context.Restricoes.Select(r =>
-            new DTOs.RestricaoDTO()
+            var acabamento = await _context.Acabamentos.Select(r =>
+            new DTOs.AcabamentoDTO()
             {
-                RestricaoID = r.RestricaoID,
+                AcabamentoID = r.AcabamentoID,
                 Nome = r.Nome
-            }).SingleOrDefaultAsync(r => r.RestricaoID == id);
+            }).SingleOrDefaultAsync(r => r.AcabamentoID == id);
 
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if(restricao == null)
+            if(acabamento == null)
             {
                 return NotFound();
             }
 
-            return Ok(restricao);
+            return Ok(acabamento);
         }
 
-        //POST api/restricao
+        //POST api/acabamento
         [HttpPost]
-        public async Task<IActionResult> PostRestricao([FromBody] Restricao restricao)
+        public async Task<IActionResult> Postacabamento([FromBody] Acabamento acabamento)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Restricoes.Add(restricao);
+            _context.Acabamentos.Add(acabamento);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRestricao", new { id = restricao.RestricaoID }, restricao);
+            return CreatedAtAction("GetAcabamento", new { id = acabamento.AcabamentoID }, acabamento);
         }
 
 
-        //PUT api/restricao/{id}
+        //PUT api/acabamento/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRestricao([FromRoute] int id, [FromBody] Restricao restricao)
+        public async Task<IActionResult> Putacabamento([FromRoute] int id, [FromBody] Acabamento acabamento)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != restricao.RestricaoID)
+            if (id != acabamento.AcabamentoID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(restricao).State = EntityState.Modified;
+            _context.Entry(acabamento).State = EntityState.Modified;
 
             try
             {
@@ -100,7 +100,7 @@ namespace ArmariosPorMedidaAPI.Controllers
 
             catch (DbUpdateConcurrencyException)
             {
-                if (!RestricaoExists(id))
+                if (!AcabamentoExists(id))
                 {
                     return NotFound();
                 }
@@ -113,32 +113,32 @@ namespace ArmariosPorMedidaAPI.Controllers
             return NoContent();
         }
 
-        //DELETE api/restricao/{id}
+        //DELETE api/acabamento/{id}
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRestricao([FromRoute] int id)
+        public async Task<IActionResult> DeleteAcabamento([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var restricao = await _context.Restricoes.SingleOrDefaultAsync(r => r.RestricaoID == id);
-            if (restricao == null)
+            var acabamento = await _context.Acabamentos.SingleOrDefaultAsync(r => r.AcabamentoID == id);
+            if (acabamento == null)
             {
                 return NotFound();
             }
 
-            _context.Restricoes.Remove(restricao);
+            _context.Acabamentos.Remove(acabamento);
             await _context.SaveChangesAsync();
 
-            return Ok(restricao);
+            return Ok(acabamento);
         }
 
 
-        //Verifica se restricao com ID id já existe
-        private bool RestricaoExists(int id)
+        //Verifica se acabamento com ID id já existe
+        private bool AcabamentoExists(int id)
         {
-            return _context.Restricoes.Any(r => r.RestricaoID == id);
+            return _context.Acabamentos.Any(r => r.AcabamentoID == id);
         }
 
     }

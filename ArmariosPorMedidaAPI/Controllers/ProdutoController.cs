@@ -23,11 +23,14 @@ namespace ArmariosPorMedidaAPI.Controllers
 
             if (_context.Produtos.Count() == 0)
             {
-                _context.Produtos.Add(new Produto() {ProdutoID=1, Nome="product1", Preco=100 });
+                
+                _context.Acabamentos.Add(new Acabamento() {AcabamentoID=1, Nome="Acabamento1"});
+                _context.Materiais.Add(new Material() {MaterialID=1, Nome="Material1"});
+                _context.Produtos.Add(new Produto() {ProdutoID=1, Nome="product1", Preco=100, MaterialID=1, AcabamentoID=1 });
                 _context.Produtos.Add(new Produto() {ProdutoID=2, Nome="product2" });
-                _context.Partes.Add(new Parte() {ParteID=1, Nome="part1" });
-                _context.Partes.Add(new Parte() {ParteID=2, Nome="part2" });
-                _context.Partes.Add(new Parte() {ParteID=3, Nome="part3" });
+                _context.Partes.Add(new Parte() {ParteID=1, Nome="part1", Preco=50 });
+                _context.Partes.Add(new Parte() {ParteID=2, Nome="part2", Largura=20 });
+                _context.Partes.Add(new Parte() {ParteID=3, Nome="part3", Altura=10, Profundidade=15 });
                 _context.ProdutoPartes.Add(new ProdutoParte() {ProdutoID=1, ParteID=1 });
                 _context.ProdutoPartes.Add(new ProdutoParte() {ProdutoID=2, ParteID=1 });
                 _context.ProdutoPartes.Add(new ProdutoParte() {ProdutoID=1, ParteID=2 });
@@ -50,7 +53,13 @@ namespace ArmariosPorMedidaAPI.Controllers
                             select new DTOs.ProdutoDTO()
                             {
                                 ProdutoID = p.ProdutoID,
-                                Nome = p.Nome
+                                Nome = p.Nome,
+                                Preco = p.Preco,
+                                Altura = p.Altura,
+                                Largura = p.Largura,
+                                Profundidade = p.Profundidade,
+                                Material = p.Material,
+                                Acabamento = p.Acabamento
                             };
             return produto;
         }
@@ -64,7 +73,12 @@ namespace ArmariosPorMedidaAPI.Controllers
             {
                 ProdutoID = p.ProdutoID,
                 Nome = p.Nome,
-                Preco = p.Preco
+                Preco = p.Preco,
+                Altura = p.Altura,
+                Largura = p.Largura,
+                Profundidade = p.Profundidade,
+                Material = p.Material,
+                Acabamento = p.Acabamento
             }).SingleOrDefaultAsync(p => p.ProdutoID == id);
 
             if(!ModelState.IsValid)
@@ -168,7 +182,21 @@ namespace ArmariosPorMedidaAPI.Controllers
                 return NotFound();
             }
 
-            var parts = _context.ProdutoPartes.Where(p => p.ProdutoID == id).Select(p =>p.Parte).ToList();
+            //var parts = _context.ProdutoPartes.Where(p => p.ProdutoID == id).Select(p =>p.Parte).ToList();
+
+            var parts = _context.ProdutoPartes.Where(p => p.ProdutoID == id).Select(p => 
+            new DTOs.ParteDTO
+            {
+                
+                ParteID = p.ParteID,
+                Nome = p.Parte.Nome,
+                Preco = p.Parte.Preco,
+                Altura = p.Parte.Altura,
+                Largura = p.Parte.Largura,
+                Profundidade = p.Parte.Profundidade
+
+            }).ToList();
+            
 
             //var parts = _context.Partes.Where(p => p.ProdutoPartes.Any(pp => pp.ProdutoID == id)).ToList();
 
@@ -194,7 +222,18 @@ namespace ArmariosPorMedidaAPI.Controllers
                 return NotFound();
             }
 
-            var parts = _context.ProdutoPartes.Where(p => p.ParteID == id).Select(p =>p.Produto).ToList();
+            var parts = _context.ProdutoPartes.Where(p => p.ParteID == id).Select(p =>
+            new DTOs.ProdutoDTO
+            {
+                ProdutoID = p.ProdutoID,
+                Nome = p.Produto.Nome,
+                Preco = p.Produto.Preco,
+                Altura = p.Produto.Altura,
+                Largura = p.Produto.Largura,
+                Profundidade = p.Produto.Profundidade
+
+
+            }).ToList();
 
             return Ok(parts);
 
@@ -217,7 +256,12 @@ namespace ArmariosPorMedidaAPI.Controllers
                 return NotFound();
             }
 
-            var restricoes = _context.ProdutoRestricoes.Where(p => p.ProdutoID == id).Select(p =>p.Restricao).ToList();
+            var restricoes = _context.ProdutoRestricoes.Where(p => p.ProdutoID == id).Select(p =>
+            new DTOs.RestricaoDTO
+            {
+                RestricaoID = p.RestricaoID,
+                Nome = p.Restricao.Nome
+            }).ToList();
 
             return Ok(restricoes);
 
@@ -238,7 +282,11 @@ namespace ArmariosPorMedidaAPI.Controllers
             new DTOs.ProdutoDTO()
             {
                 ProdutoID = p.ProdutoID,
-                Nome = p.Nome
+                Nome = p.Nome,
+                Preco = p.Preco,
+                Altura = p.Altura,
+                Largura = p.Largura,
+                Profundidade = p.Profundidade
             }).SingleOrDefaultAsync(p => p.Nome == nome);
 
             if (produto == null)
@@ -250,6 +298,8 @@ namespace ArmariosPorMedidaAPI.Controllers
 
         }
 
+        
+
         //Verifica se produto com ID id já existe
         private bool ProdutoExists(int id)
         {
@@ -257,35 +307,37 @@ namespace ArmariosPorMedidaAPI.Controllers
         }
         
         
-        
-        
+       
+        [HttpGet("{id}/MaterialAcabamento")]
+        public async Task<IActionResult> GetMaterialAcabamento([FromRoute] int id){
 
-/*
-         [Route("api/MaterialAcabamento")]
-        
-        
-        //GET api/materialAcabamento/{id}
-        [HttpGet("{id}", Name = "GetMaterialAcabamento")]
-        public ActionResult<string> GetAcabamentoById(int id)
-        {
-            var acabamento = _context.Acabamentos.Find(id);
-            if (acabamento == null)
+            var produto = await _context.Produtos.Select(p =>
+            new DTOs.ProdutoDTO()
+            {
+                ProdutoID = p.ProdutoID,
+                Nome = p.Nome,
+                Preco = p.Preco,
+                Altura = p.Altura,
+                Largura = p.Largura,
+                Profundidade = p.Profundidade,
+                Material = p.Material,
+                Acabamento = p.Acabamento
+            }).SingleOrDefaultAsync(p => p.ProdutoID == id);
+
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(produto == null)
             {
                 return NotFound();
             }
 
-            var material =_context.Materiais.GetAll;
-            var matAcab;
-            for(int i=0;i<material.Count;i++){
-                if(material[i].acabamento==acabamento){
-                    matAcab=material[i];
-                }
-            }
-
-            string result= "MaterialID="+matAcab.ID +"\nMaterialNome:"+matAcab.nome + "\nAcabamentoID="+ id + "\nNomeAcabamento:"+ acabamento.nome;
-            return result;
+            string output = produto.Material.Nome+System.Environment.NewLine+produto.Acabamento.Nome;
+            return Ok(output);
         }
-*/
+
 
         
 

@@ -15,6 +15,8 @@ namespace ArmariosPorMedidaAPI.DTOs
         public double Altura {get ; set; }
         public double Largura {get ; set; }
         public double Profundidade {get ; set; }
+        public Material Material { get; set; }
+        public Acabamento Acabamento { get; set; }
 
     }
 }

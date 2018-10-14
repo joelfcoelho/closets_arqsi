@@ -1,0 +1,60 @@
+/*Get - Tests */
+
+pm.test("Status code is 200", function(){
+pm.response.to.be.status(200);
+});
+
+pm.test("Response time is less than 500ms",function(){
+pm.expect(pm.response.responseTime).to.be.below(500);});
+
+/*Get/1 - Tests */
+
+pm.test("ID do Produto", function(){
+var jsonData=pm.response.json();
+pm.expect(jsonData.produtoId.to.eql(1));});
+
+pm.test("Response time is less than 500ms",function(){
+pm.expect(pm.response.responseTime).to.be.below(500);});
+
+/*Post - Tests */
+
+tests["Status code"] =
+responseCode.name.has("Created"); 
+
+tests["Successful POST request"] = responseCode.code === 201 ||
+responseCode.code === 202; 
+
+tests["Content-Type is JSON"] = postman.getResponseHeader("ContentType")
+=== "application/json"; 
+
+var response = JSON.parse(responseBody);
+tests[”Name"] = response.nome === ”categoria";
+
+pm.test("Response time is less than 500ms",function(){
+pm.expect(pm.response.responseTime).to.be.below(500);});
+
+/*Put- Tests */
+
+tests["Successful Put request"] = responseCode.code === 201 ||
+responseCode.code === 202; 
+
+var response = JSON.parse(responseBody);
+tests[”Name is set"] = response.nome === ”categoriaAtualizada";
+ 
+pm.test("Response time is less than 500ms",function(){
+pm.expect(pm.response.responseTime).to.be.below(500);});
+
+/*Delete - Tests */
+
+tests["Successful Delete request"] = responseCode.code === 201 ||
+responseCode.code === 202; 
+
+pm.test("Response time is less than 500ms",function(){
+pm.expect(pm.response.responseTime).to.be.below(500);});
+
+
+
+
+
+
+

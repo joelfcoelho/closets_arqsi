@@ -30,7 +30,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             var categoria = from c in _context.Categorias
                             select new DTOs.CategoriaDTO()
                             {
-                                ID = c.ID,
+                                CategoriaID = c.CategoriaID,
                                 Nome = c.Nome
                             };
             return categoria;
@@ -43,9 +43,9 @@ namespace ArmariosPorMedidaAPI.Controllers
             var categoria = await _context.Categorias.Select(c =>
             new DTOs.CategoriaDTO()
             {
-                ID = c.ID,
+                CategoriaID = c.CategoriaID,
                 Nome = c.Nome
-            }).SingleOrDefaultAsync(c => c.ID == id);
+            }).SingleOrDefaultAsync(c => c.CategoriaID == id);
 
             if(!ModelState.IsValid)
             {
@@ -72,7 +72,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             _context.Categorias.Add(categoria);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCategoria", new { id = categoria.ID }, categoria);
+            return CreatedAtAction("GetCategoria", new { id = categoria.CategoriaID }, categoria);
         }
 
         //PUT api/categoria/{id}
@@ -84,7 +84,7 @@ namespace ArmariosPorMedidaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != categoria.ID)
+            if (id != categoria.CategoriaID)
             {
                 return BadRequest();
             }
@@ -119,7 +119,7 @@ namespace ArmariosPorMedidaAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var categoria = await _context.Categorias.SingleOrDefaultAsync(c => c.ID == id);
+            var categoria = await _context.Categorias.SingleOrDefaultAsync(c => c.CategoriaID == id);
             if (categoria == null)
             {
                 return NotFound();
@@ -131,58 +131,11 @@ namespace ArmariosPorMedidaAPI.Controllers
             return Ok(categoria);
         }
 
-          //Verifica se a categoria com ID id já existe
+        //Verifica se a categoria com ID id já existe
         private bool CategoriaExists(int id)
         {
-            return _context.Categorias.Any(c => c.ID == id);
+            return _context.Categorias.Any(c => c.CategoriaID == id);
         }
-
-/*
-        //GET api/categoria
-        [HttpGet]
-        public ActionResult<List<Categoria>> GetAll()
-        {
-            return _context.Categorias.ToList();
-        }
-
-        //GET api/categoria/{id}
-        [HttpGet("{id}", Name = "GetCategoria")]
-        public ActionResult<Categoria> GetById(int id)
-        {
-            var cat = _context.Categorias.Find(id);
-            if (cat == null)
-            {
-                return NotFound();
-            }
-            return cat;
-        }
-
-        //CREATE
-        [HttpPost]
-        public IActionResult Create(Categoria cat)
-        {
-            _context.Categorias.Add(cat);
-            _context.SaveChanges();
-
-            return CreatedAtRoute("GetCategoria", new { id = cat.ID }, cat);
-        }
-
-
-        //DELETE
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            var todo = _context.Categorias.Find(id);
-            if (todo == null)
-            {
-                return NotFound();
-            }
-
-            _context.Categorias.Remove(todo);
-            _context.SaveChanges();
-            return NoContent();
-        }
-*/
 
     }
 }

@@ -9,7 +9,7 @@ namespace ArmariosPorMedidaAPI.DTOs
     public class CategoriaDTO
     {
         
-       public int ID { get; set; }
+       public int CategoriaID { get; set; }
 
        public string Nome { get; set; }
        public virtual ICollection<int> SubCategorias { get; set; }   

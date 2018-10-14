@@ -21,7 +21,7 @@ namespace ArmariosPorMedidaAPI.Controllers
         {
             _context = context;
 
-            if (_context.Produtos.Count() == 0)
+            /*if (_context.Produtos.Count() == 0)
             {
                 
                 _context.Acabamentos.Add(new Acabamento() {AcabamentoID=1, Nome="Acabamento1"});
@@ -40,7 +40,7 @@ namespace ArmariosPorMedidaAPI.Controllers
                 _context.ProdutoRestricoes.Add(new ProdutoRestricao() {ProdutoID=1, RestricaoID=1 });
                 _context.ProdutoRestricoes.Add(new ProdutoRestricao() {ProdutoID=1, RestricaoID=2 });
                 _context.SaveChanges();
-            }
+            }*/
 
         }
 
@@ -78,7 +78,8 @@ namespace ArmariosPorMedidaAPI.Controllers
                 Largura = p.Largura,
                 Profundidade = p.Profundidade,
                 Material = p.Material,
-                Acabamento = p.Acabamento
+                Acabamento = p.Acabamento,
+                Categoria = p.Categoria
             }).SingleOrDefaultAsync(p => p.ProdutoID == id);
 
             if(!ModelState.IsValid)

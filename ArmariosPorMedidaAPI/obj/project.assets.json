@@ -11507,11 +11507,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hp\\Desktop\\TerceiroAno\\ARQSI\\Codigo\\arqsi_2018\\ArmariosPorMedidaAPI\\ArmariosPorMedidaAPI.csproj",
+      "projectUniqueName": "C:\\Users\\hp\\Desktop\\TerceiroAno\\ARQSI\\Repo\\arqsi_2018\\ArmariosPorMedidaAPI\\ArmariosPorMedidaAPI.csproj",
       "projectName": "ArmariosPorMedidaAPI",
-      "projectPath": "C:\\Users\\hp\\Desktop\\TerceiroAno\\ARQSI\\Codigo\\arqsi_2018\\ArmariosPorMedidaAPI\\ArmariosPorMedidaAPI.csproj",
+      "projectPath": "C:\\Users\\hp\\Desktop\\TerceiroAno\\ARQSI\\Repo\\arqsi_2018\\ArmariosPorMedidaAPI\\ArmariosPorMedidaAPI.csproj",
       "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hp\\Desktop\\TerceiroAno\\ARQSI\\Codigo\\arqsi_2018\\ArmariosPorMedidaAPI\\obj\\",
+      "outputPath": "C:\\Users\\hp\\Desktop\\TerceiroAno\\ARQSI\\Repo\\arqsi_2018\\ArmariosPorMedidaAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -9,10 +9,10 @@ namespace ArmariosPorMedidaAPI.Models
             : base(options)
         {
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        /*/protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(@"Server=localhost\SQLExpress;Database=ArmariosPorMedida;Trusted_Connection=true");
-        }
+        }*/
         
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Restricao> Restricoes { get; set; }

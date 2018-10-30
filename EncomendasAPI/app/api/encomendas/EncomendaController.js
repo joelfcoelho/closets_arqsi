@@ -1,11 +1,22 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json());
+const utils = require('../../components/utils');
+const Encomenda = require('../../models/Encomenda');
 
-var Encomenda = require('./Encomenda');
 
+
+
+
+function index() {
+
+}
+
+
+function show() {
+
+}
+
+function create() {
+
+}
 // POST ENCOMENDA
 router.post('/', function (req, res) {
 
@@ -67,4 +78,8 @@ router.put('/:id', function (req, res) {
 });
 
 
-module.exports = router;
+module.exports = {
+  index   : index,
+  show    : show,
+  create  : create
+};

@@ -15,17 +15,17 @@ let all = {
         uri: 'mongodb://arqsi2018:arqsi2018@ds014808.mlab.com:14808/encomendasapi'
     }
 
-    /*jwt: {
-        secret   : "fSk35bzq6KutR0dQVKTL",
-        issuer   : "http://projeto.arqsi.local",
-        audience : "Everyone"
-    },
-
-    gestaoArmarios: {
-        url      : 'http://your_azure_app.net',
-        email    : 'email@example.com',
-        password : 'password'
-    },*/
+    // jwt: {
+    //     secret   : "fSk35bzq6KutR0dQVKTL",
+    //     issuer   : "http://projeto.arqsi.local",
+    //     audience : "Everyone"
+    // },
+    //
+    // gestaoArmarios: {
+    //     url      : 'http://your_azure_app.net',
+    //     email    : 'email@example.com',
+    //     password : 'password'
+    // },
 
 
 };

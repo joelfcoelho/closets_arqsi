@@ -30,7 +30,7 @@ namespace ArmariosPorMedidaAPI
             /*/ services.AddDbContext<ArmariosPorMedidaContext>(options =>
                      options.UseSqlServer(@"Server=localhost\SQLExpress;Database=ArmariosPorMedida;Trusted_Connection=true"));*/
             services.AddDbContext<ArmariosPorMedidaContext>(opt =>
-        opt.UseInMemoryDatabase("ProdutosList"));
+        opt.UseSqlServer(Configuration.GetConnectionString("ArmariosPorMedidaContext")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

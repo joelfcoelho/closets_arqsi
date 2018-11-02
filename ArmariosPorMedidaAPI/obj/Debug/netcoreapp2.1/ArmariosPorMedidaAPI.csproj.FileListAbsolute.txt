@@ -68,3 +68,4 @@ C:\Users\hp\Desktop\TerceiroAno\ARQSI\Repo\arqsi_2018\ArmariosPorMedidaAPI\obj\D
 C:\Users\hp\Desktop\TerceiroAno\ARQSI\Repo\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.RazorTargetAssemblyInfo.cache
 C:\Users\hp\Desktop\TerceiroAno\ARQSI\Repo\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.dll
 C:\Users\hp\Desktop\TerceiroAno\ARQSI\Repo\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\ArmariosPorMedidaAPI.pdb
+C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs

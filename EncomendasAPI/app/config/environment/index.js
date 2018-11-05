@@ -22,7 +22,7 @@ let all = {
     // },
     //
     // gestaoArmarios: {
-    //     url      : 'http://your_azure_app.net',
+    //     url      : 'http://armariospormedidaapi.azurewebsites.net/',
     //     email    : 'email@example.com',
     //     password : 'password'
     // },

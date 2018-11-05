@@ -22,6 +22,8 @@ namespace ArmariosPorMedidaAPI.Models
         public DbSet<Parte> Partes { get; set; }
         public DbSet<ProdutoParte> ProdutoPartes { get; set; }
         public DbSet<ProdutoRestricao> ProdutoRestricoes { get; set; }
+        public DbSet<MaterialAcabamento> MaterialAcabamentos { get; set; }
+        public DbSet<MaterialProduto> MaterialProdutos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -53,6 +55,34 @@ namespace ArmariosPorMedidaAPI.Models
                 .HasOne(pp => pp.Restricao)
                 .WithMany(r => r.ProdutoRestricoes)
                 .HasForeignKey(pp => pp.RestricaoID);
+
+            //Produto * * Material
+            modelBuilder.Entity<MaterialProduto>()
+                .HasKey(pp => new { pp.MaterialID, pp.ProdutoID });
+
+            modelBuilder.Entity<MaterialProduto>()
+                .HasOne(pp => pp.Produto)
+                .WithMany(pr => pr.MaterialProdutos)
+                .HasForeignKey(bc => bc.ProdutoID);
+
+            modelBuilder.Entity<MaterialProduto>()
+                .HasOne(pp => pp.Material)
+                .WithMany(pa => pa.MaterialProdutos)
+                .HasForeignKey(pp => pp.MaterialID);
+
+            //Material * * Acabamento
+            modelBuilder.Entity<MaterialAcabamento>()
+                .HasKey(pp => new { pp.MaterialID, pp.AcabamentoID });
+
+            modelBuilder.Entity<MaterialAcabamento>()
+                .HasOne(pp => pp.Material)
+                .WithMany(pr => pr.MaterialAcabamentos)
+                .HasForeignKey(bc => bc.MaterialID);
+
+            modelBuilder.Entity<MaterialAcabamento>()
+                .HasOne(pp => pp.Acabamento)
+                .WithMany(pa => pa.MaterialAcabamentos)
+                .HasForeignKey(pp => pp.AcabamentoID);
         }
 
     }

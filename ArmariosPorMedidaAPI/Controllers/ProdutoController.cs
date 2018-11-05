@@ -58,8 +58,8 @@ namespace ArmariosPorMedidaAPI.Controllers
                                 Altura = p.Altura,
                                 Largura = p.Largura,
                                 Profundidade = p.Profundidade,
-                                Material = p.Material,
-                                Acabamento = p.Acabamento
+                                //Material = p.Material,
+                                //Acabamento = p.Acabamento
                             };
             return produto;
         }
@@ -77,8 +77,8 @@ namespace ArmariosPorMedidaAPI.Controllers
                 Altura = p.Altura,
                 Largura = p.Largura,
                 Profundidade = p.Profundidade,
-                Material = p.Material,
-                Acabamento = p.Acabamento,
+                //Material = p.Material,
+                //Acabamento = p.Acabamento,
                 Categoria = p.Categoria
             }).SingleOrDefaultAsync(p => p.ProdutoID == id);
 
@@ -310,9 +310,9 @@ namespace ArmariosPorMedidaAPI.Controllers
         
        
         [HttpGet("{id}/MaterialAcabamento")]
-        public async Task<IActionResult> GetMaterialAcabamento([FromRoute] int id){
-
-            var produto = await _context.Produtos.Select(p =>
+        public IActionResult GetMaterialAcabamento([FromRoute] int id){
+           //metodo funcional mas antigo
+           /*var produto = await _context.Produtos.Select(p =>
             new DTOs.ProdutoDTO()
             {
                 ProdutoID = p.ProdutoID,
@@ -336,7 +336,39 @@ namespace ArmariosPorMedidaAPI.Controllers
             }
 
             string output = produto.Material.Nome+System.Environment.NewLine+produto.Acabamento.Nome;
-            return Ok(output);
+            return Ok(output); */
+        
+        //metodo atualizado mas não funcional
+             if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+              Produto produto = _context.Produtos.SingleOrDefault(p => p.ProdutoID == id);
+
+            if(produto == null)
+            {
+                return NotFound();
+            }
+            var materialProduto = _context.MaterialProdutos.Where(mp => mp.ProdutoID == produto.ProdutoID).Select(mp =>
+            new DTOs.MaterialProdutoDTO
+            {
+                MaterialID = mp.MaterialID,
+                ProdutoID=mp.ProdutoID
+            }).ToList();
+
+            if(materialProduto == null)
+            {
+                return NotFound();
+            }
+            /*var materialAcabamento = _context.MaterialAcabamentos.Where(ma => ma.MaterialID == materialProduto.MaterialID).Select(ma =>
+            new DTOs.MaterialAcabamentoDTO
+            {
+                MaterialID = ma.MaterialID,
+                AcabamentoID=ma.AcabamentoID
+            }).ToList();
+
+            return Ok(materialAcabamento);*/
+            return Ok();
         }
 
 

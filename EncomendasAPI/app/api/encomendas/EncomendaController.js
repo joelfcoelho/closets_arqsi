@@ -50,6 +50,52 @@ function create(req, res) {
 }
 
 
+function remove(req, res) {
+
+  let query = {
+    _id : req.params.id
+  };
+
+  Encomenda.findByIdAndRemove(query)
+  .then(encomenda =>  {
+    if(!encomenda) {
+      return res.status(404).json({error: 'not_found', message: 'Esta encomenda não existe'});
+    }
+      res.status(200).send("Encomenda apagada.");
+  })
+  .catch(utils.handleError(req, res));
+}
+
+
+function edit(req, res) {
+
+  let query = {
+    _id : req.params.id
+  };
+
+  Encomenda.findById(query)
+  .then(encomenda => {
+    if(!encomenda) {
+      return res.status(404).json({error: 'not_found', message: 'Esta encomenda não existe'});
+    }
+
+    for (let attr in req.body) {
+      encomenda[attr] = req.body[attr];
+    }
+
+    encomenda.save()
+    .then(e => {
+      res.status(200).json(e);
+    })
+    .catch(utils.handleError(req, res));
+
+  })
+  .catch(utils.handleError(req, res));
+
+}
+
+
+
 // // POST ENCOMENDA
 // router.post('/', function (req, res) {
 //
@@ -114,5 +160,7 @@ function create(req, res) {
 module.exports = {
   index   : index,
   show    : show,
-  create  : create
+  create  : create,
+  remove  : remove,
+  edit    : edit
 };

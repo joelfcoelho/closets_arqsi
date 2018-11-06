@@ -66,7 +66,7 @@ let ProdutoSchema = new Schema({
 
 
 let EncomendaSchema = new Schema({
-  produtos: {
+  itens: {
     type    : [ProdutoSchema],
     validate: {
       validator:  function(v){

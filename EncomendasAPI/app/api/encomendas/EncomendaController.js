@@ -37,9 +37,15 @@ function show(req, res) {
 
 function create(req, res) {
 
-  let encomenda = new Encomenda();
+  let encomenda   = new Encomenda();
+  let itens       = req.body.itens  ||  [];
 
-  //Validacoes para restantes componentes de encomenda
+  encomenda.itens = itens.map(i =>  {
+    if (!i.idProduto) {
+      i.idProduto = 0;
+    }
+    return  i;
+  });
 
   encomenda.save()
   .then(e => {
@@ -66,7 +72,7 @@ function remove(req, res) {
   .catch(utils.handleError(req, res));
 }
 
-
+//  Necessita correcao
 function edit(req, res) {
 
   let query = {

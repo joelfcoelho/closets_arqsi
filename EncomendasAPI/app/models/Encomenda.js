@@ -3,38 +3,10 @@ const Schema    = mongoose.Schema;
 const gda       = require('../components/gestao-armarios');
 
 
-let ParteSchema = new Schema({
-  idParte : {
-    type    : Number,
-    validate: {
-      validator:  function(v){
-        if (v === 0) return true;
-        return gda.get('/api/parte/${v}');
-      }
-    }
-  },
-
-  preco   : {
-    type  : Number
-  },
-
-  altura  : {
-    type  : Number
-  },
-
-  largura : {
-    type  : Number
-  },
-
-  profundidade  : {
-    type  : Number
-  },
-});
-
-
-let ProdutoSchema = new Schema({
-  idProduto : {
-    type    : Number,
+let ItemSchema = new Schema({
+  idProduto   : {
+    type      : Number,
+    required  : true,
     validate: {
       validator:  function(v){
         if (v === 0) return true;
@@ -44,48 +16,56 @@ let ProdutoSchema = new Schema({
   },
 
   preco   : {
-    type  : Number
+    type      : Number,
+    required  : [true, 'O preço é obrigatório.']
   },
 
   altura  : {
-    type  : Number
+    type      : Number,
+    required  : [true, 'A altura é obrigatória.']
   },
 
   largura : {
-    type  : Number
+    type      : Number,
+    required  : [true, 'A largura é obrigatória.']
   },
 
   profundidade  : {
-    type  : Number
+    type      : Number,
+    required  : [true, 'A profundidade é obrigatória.']
   },
 
-  partes  : {
-    type  : [ParteSchema]
-  },
+  // itens  : {
+  //   type  : [this],
+  //   validate: {
+  //     validator:  function(v){
+  //       if (v === 0) return true;
+  //       return gda.get('/api/produto/${v}/partes');
+  //     }
+  // },
 });
 
 
 let EncomendaSchema = new Schema({
+  // cliente:  {
+  //   type      : mongoose.Schema.Types.ObjectId,
+  //   ref       : 'User',
+  //   required  : true
+  // },
+
   itens: {
-    type    : [ProdutoSchema],
+    type    : [IemSchema],
     validate: {
       validator:  function(v){
           return v.length >= 1;
       },
-      message : 'Uma encomenda deve ter pelo menos um produto'
+      message : 'Uma encomenda deve ter pelo menos um produto.'
     }
   }
 
-  //info cliente
 
-  //Teste
-  // cliente_id: String,
-  // itens: [Number]
+
 
 });
 
 module.exports = mongoose.model('Encomenda', EncomendaSchema);
-
-// mongoose.model('Encomenda', EncomendaSchema);
-//
-// module.exports = mongoose.model('Encomenda');

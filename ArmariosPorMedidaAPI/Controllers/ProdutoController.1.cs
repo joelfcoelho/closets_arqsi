@@ -309,36 +309,8 @@ namespace ArmariosPorMedidaAPI.Controllers
         
         
        
-        [HttpGet("{id}/MaterialAcabamento")]
+        [HttpGet("{id}/Material")]
         public IActionResult GetMaterialAcabamento([FromRoute] int id){
-           //metodo funcional mas antigo
-           /*var produto = await _context.Produtos.Select(p =>
-            new DTOs.ProdutoDTO()
-            {
-                ProdutoID = p.ProdutoID,
-                Nome = p.Nome,
-                Preco = p.Preco,
-                Altura = p.Altura,
-                Largura = p.Largura,
-                Profundidade = p.Profundidade,
-                Material = p.Material,
-                Acabamento = p.Acabamento
-            }).SingleOrDefaultAsync(p => p.ProdutoID == id);
-
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if(produto == null)
-            {
-                return NotFound();
-            }
-
-            string output = produto.Material.Nome+System.Environment.NewLine+produto.Acabamento.Nome;
-            return Ok(output); */
-        
-        //metodo atualizado mas não funcional
              if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -350,26 +322,19 @@ namespace ArmariosPorMedidaAPI.Controllers
                 return NotFound();
             }
             var materialProduto = _context.MaterialProdutos.Where(mp => mp.ProdutoID == produto.ProdutoID).Select(mp =>
-            new DTOs.MaterialProdutoDTO
+            new DTOs.MaterialDTO
             {
-                MaterialID = mp.MaterialID,
-                ProdutoID=mp.ProdutoID
+                MaterialID = mp.MaterialID
             }).ToList();
 
             if(materialProduto == null)
             {
                 return NotFound();
             }
-            /*var materialAcabamento = _context.MaterialAcabamentos.Where(ma => ma.MaterialID == materialProduto.MaterialID).Select(ma =>
-            new DTOs.MaterialAcabamentoDTO
-            {
-                MaterialID = ma.MaterialID,
-                AcabamentoID=ma.AcabamentoID
-            }).ToList();
-
-            return Ok(materialAcabamento);*/
-            return Ok();
+            return Ok(materialProduto);
         }
+
+        
 
 
         

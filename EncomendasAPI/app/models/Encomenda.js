@@ -3,6 +3,20 @@ const Schema    = mongoose.Schema;
 const gda       = require('../components/gestao-armarios');
 
 
+// let ParteSchema = new Schema({
+//   idParte   : {
+//     type      : Number,
+//     required  : true,
+//     validate: {
+//       validator:  function(v1, v2){
+//         if (v === 0) return true;
+//         return gda.get('/api/produto/${v1}/parte/${v2}');
+//       }
+//     }
+//   },
+// });
+
+
 let ItemSchema = new Schema({
   idProduto   : {
     type      : Number,
@@ -36,7 +50,7 @@ let ItemSchema = new Schema({
   },
 
   // itens  : {
-  //   type  : [this],
+  //   type  : [ParteSchema],
   //   validate: {
   //     validator:  function(v){
   //       if (v === 0) return true;
@@ -54,7 +68,7 @@ let EncomendaSchema = new Schema({
   // },
 
   itens: {
-    type    : [IemSchema],
+    type    : [ItemSchema],
     validate: {
       validator:  function(v){
           return v.length >= 1;
@@ -62,9 +76,6 @@ let EncomendaSchema = new Schema({
       message : 'Uma encomenda deve ter pelo menos um produto.'
     }
   }
-
-
-
 
 });
 

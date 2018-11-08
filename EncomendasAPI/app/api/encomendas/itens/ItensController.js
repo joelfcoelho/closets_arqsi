@@ -31,3 +31,9 @@ function show(req, res){
   .then(item => res.status(200).json(item))
   .catch(err => res.status(404).json(err));
 }
+
+
+
+module.exports = {
+  show    : show
+};

@@ -11,7 +11,7 @@ using ArmariosPorMedidaAPI.Models;
 namespace ArmariosPorMedidaAPI.Controllers
 {
     
-    [Route("api/material")]
+    [Route("api/Material")]
     [ApiController]
     public class MaterialController : ControllerBase
     {
@@ -137,7 +137,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             return _context.Materiais.Any(p => p.MaterialID == id);
         }
 
-            [HttpGet("{id}/Material")]
+            [HttpGet("{id}/Acabamento")]
         public IActionResult GetAcabamento([FromRoute] int id){
              if(!ModelState.IsValid)
             {

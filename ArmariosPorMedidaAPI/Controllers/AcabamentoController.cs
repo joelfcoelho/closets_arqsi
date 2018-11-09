@@ -11,7 +11,7 @@ using ArmariosPorMedidaAPI.Models;
 
 namespace ArmariosPorMedidaAPI.Controllers
 {
-    [Route("api/acabamento")]
+    [Route("api/Acabamento")]
     [ApiController]
     public class AcabamentoController : ControllerBase
     {

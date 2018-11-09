@@ -8,4 +8,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAA+bCpuuAAkOyxMvoCUW2hgAAAAACAAAAAAAQZgAAAAEAACAAAAAr7dRb9JWMnWoAV1YTRaBriKuerbI7VTulHao/cSkS8AAAAAAOgAAAAAIAACAAAAAbK18GLJ+gM3tOEmDEFRV/fuIt7TO3NgLCd5D7pNveZIAAAABwJdUdL9RlEwGR+rqVlkZrGBKvpF28UawJVJpBHnUPqqQL3p08MC9IJmhDwmpFIpe4Uvasa0ZvOXdEzknVjnS8pvScyxV6sbeaYopyhGcCtmD0fJYZ8wdkGyCZHXx+vO5zM4mW48OqyMrwvKR4geVroy+RMqqoerwehaiOqHrobkAAAAAJDn9pSb64MbxbvxDJTGvF4FvmpYW+fhhMGaMN2Hfxk3rrC8ftjU01/4x82cqg7uOQNiOOjW9qt/LkdiccQWvs</EncryptedPassword>
   </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="ArmariosPorMedidaContext">
+      <Value>Data Source=armariospormedidaapidb.database.windows.net,1433%3bInitial Catalog=ArmariosPorMedidaApi_db%3bPersist Security Info=False%3bUser ID=arqsi2018%3bPassword=Arqsijoelrui2018%3bMultipleActiveResultSets=False%3bEncrypt=True%3bTrustServerCertificate=False%3bConnection Timeout=30</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
 </Project>

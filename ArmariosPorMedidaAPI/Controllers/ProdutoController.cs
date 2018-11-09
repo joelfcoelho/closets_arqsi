@@ -79,7 +79,7 @@ namespace ArmariosPorMedidaAPI.Controllers
                 Profundidade = p.Profundidade,
                 //Material = p.Material,
                 //Acabamento = p.Acabamento,
-                Categoria = p.Categoria
+                //Categoria = p.Categoria
             }).SingleOrDefaultAsync(p => p.ProdutoID == id);
 
             if(!ModelState.IsValid)

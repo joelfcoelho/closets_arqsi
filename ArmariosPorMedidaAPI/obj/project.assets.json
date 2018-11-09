@@ -7777,10 +7777,11 @@
       ]
     },
     "NUnit/3.10.1": {
-      "sha512": "E3ii6+VLdeIxTQ5gPjk/7g/xl+aCifbfcIkiGayZCuos+22FEdtKGrxMe6SzoXCQCcL7gdqhfNIFTaZ1+dS18g==",
+      "sha512": "+qPe5OscM2hvV496Tym/RVa8H3yUHg7WDcV0UjxHnWshmzh/V9h36MMkrYfom2Sxb/zIJ1c8NGqTg8biGaoxZA==",
       "type": "package",
       "path": "nunit/3.10.1",
       "files": [
+        ".signature.p7s",
         "CHANGES.md",
         "LICENSE.txt",
         "NOTICES.txt",
@@ -7809,10 +7810,11 @@
       ]
     },
     "NUnit3TestAdapter/3.10.0": {
-      "sha512": "hC4QeR/iC8yJcI9eyAfAFWBaDP7lh4CnXqIMLq26CLLGQsLqy44uJwBVmo/0o9aTKVwPm/M1lPYqYcfOJMDqyg==",
+      "sha512": "PYfvC3lM3XngRbJOqxuD9ldqQetSIKvinSuMY6MpLhyCQO8Cz3KPIaoHnPw+LI3WR/5/MIeRSYPnqXskctHoMw==",
       "type": "package",
       "path": "nunit3testadapter/3.10.0",
       "files": [
+        ".signature.p7s",
         "LICENSE.txt",
         "build/net35/Mono.Cecil.dll",
         "build/net35/NUnit3.TestAdapter.dll",
@@ -9097,11 +9099,10 @@
       ]
     },
     "System.Diagnostics.TextWriterTraceListener/4.0.0": {
-      "sha512": "oRsXCz76GDDMrwjMjH6keR9erFIofhGaIMc2d4NykI4rdBEuUP5ZswYA30LGPdyCK7DV4bMBEJL3nJFyAJoS/g==",
+      "sha512": "w36Dr8yKy8xP150qPANe7Td+/zOI3G62ImRcHDIEW+oUXUuTKZHd4DHmqRx5+x8RXd85v3tXd1uhNTfsr+yxjA==",
       "type": "package",
       "path": "system.diagnostics.textwritertracelistener/4.0.0",
       "files": [
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -12901,28 +12902,30 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hp\\.nuget\\packages\\": {},
+    "C:\\Users\\n7\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hp\\Desktop\\TerceiroAno\\ARQSI\\Repo\\arqsi_2018\\ArmariosPorMedidaAPI\\ArmariosPorMedidaAPI.csproj",
+      "projectUniqueName": "C:\\Users\\n7\\Documents\\arqsi_2018\\ArmariosPorMedidaAPI\\ArmariosPorMedidaAPI.csproj",
       "projectName": "ArmariosPorMedidaAPI",
-      "projectPath": "C:\\Users\\hp\\Desktop\\TerceiroAno\\ARQSI\\Repo\\arqsi_2018\\ArmariosPorMedidaAPI\\ArmariosPorMedidaAPI.csproj",
-      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hp\\Desktop\\TerceiroAno\\ARQSI\\Repo\\arqsi_2018\\ArmariosPorMedidaAPI\\obj\\",
+      "projectPath": "C:\\Users\\n7\\Documents\\arqsi_2018\\ArmariosPorMedidaAPI\\ArmariosPorMedidaAPI.csproj",
+      "packagesPath": "C:\\Users\\n7\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\n7\\Documents\\arqsi_2018\\ArmariosPorMedidaAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\n7\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

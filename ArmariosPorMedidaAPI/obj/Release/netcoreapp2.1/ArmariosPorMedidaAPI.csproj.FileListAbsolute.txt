@@ -13,3 +13,7 @@ C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\obj\Release\netcoreapp2.1\
 C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\obj\Release\netcoreapp2.1\ArmariosPorMedidaAPI.RazorTargetAssemblyInfo.cache
 C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\obj\Release\netcoreapp2.1\ArmariosPorMedidaAPI.dll
 C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\obj\Release\netcoreapp2.1\ArmariosPorMedidaAPI.pdb
+C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\bin\Release\netcoreapp2.1\NUnit3.TestAdapter.dll
+C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\bin\Release\netcoreapp2.1\NUnit3.TestAdapter.pdb
+C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\bin\Release\netcoreapp2.1\nunit.engine.netstandard.dll
+C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\bin\Release\netcoreapp2.1\Mono.Cecil.dll

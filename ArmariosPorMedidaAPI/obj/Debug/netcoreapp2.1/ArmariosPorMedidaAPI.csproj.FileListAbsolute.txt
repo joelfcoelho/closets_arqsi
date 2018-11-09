@@ -74,3 +74,7 @@ C:\Users\hp\Desktop\TerceiroAno\ARQSI\Repo\arqsi_2018\ArmariosPorMedidaAPI\bin\D
 C:\Users\hp\Desktop\TerceiroAno\ARQSI\Repo\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\NUnit3.TestAdapter.pdb
 C:\Users\hp\Desktop\TerceiroAno\ARQSI\Repo\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\nunit.engine.netstandard.dll
 C:\Users\hp\Desktop\TerceiroAno\ARQSI\Repo\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\Mono.Cecil.dll
+C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\NUnit3.TestAdapter.dll
+C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\NUnit3.TestAdapter.pdb
+C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\nunit.engine.netstandard.dll
+C:\Users\n7\Documents\arqsi_2018\ArmariosPorMedidaAPI\bin\Debug\netcoreapp2.1\Mono.Cecil.dll

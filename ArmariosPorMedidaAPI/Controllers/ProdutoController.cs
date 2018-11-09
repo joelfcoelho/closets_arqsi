@@ -103,6 +103,7 @@ namespace ArmariosPorMedidaAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+           
 
             _context.Produtos.Add(produto);
             await _context.SaveChangesAsync();
@@ -310,7 +311,7 @@ namespace ArmariosPorMedidaAPI.Controllers
         
        
         [HttpGet("{id}/Material")]
-        public IActionResult GetMaterialAcabamento([FromRoute] int id){
+        public IActionResult GetMaterialProduto([FromRoute] int id){
              if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -333,10 +334,6 @@ namespace ArmariosPorMedidaAPI.Controllers
             }
             return Ok(materialProduto);
         }
-
-        
-
-
         
 
     }

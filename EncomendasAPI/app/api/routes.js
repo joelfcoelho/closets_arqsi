@@ -2,9 +2,8 @@ const router = require('express').Router();              // get an instance of t
 
 // ROUTES FOR OUR API
 // =============================================================================
-router.get('/', (req, res) => {
-    res.status(200).json({ message: 'Welcome to our api!' });
-});
+router.get('/', (req, res,next) => res.send({ok: true}));
+router.post('/', (req, res,next) => res.send({ok: req.body.text}));
 
 
 router.use('/encomenda', require('./encomendas'));

@@ -22,7 +22,20 @@ function findItem(encomendaId, itemId){
       .catch(() => reject({error: 'not_found', message: 'A encomenda não existe'}));
   });
 
+}
 
+function listItems(encomendaId){
+  return new Promise((resolve, reject) => {
+      Encomenda.findOne({_id: encomendaId})
+      .then(encomenda => {
+          if(!encomenda){
+              return reject({error: 'not_found', message: 'A encomenda não existe'});
+          }
+
+          return resolve(encomenda.itens);
+        })
+        .catch(() => reject({error: 'not_found', message: 'A encomenda não existe'}));
+      });
 }
 
 
@@ -32,8 +45,15 @@ function show(req, res){
   .catch(err => res.status(404).json(err));
 }
 
+function index(req, res){
+  listItems(req.params.encomendaId)
+  .then(item => res.status(200).json(item))
+  .catch(err => res.status(404).json(err));
+}
+
 
 
 module.exports = {
-  show    : show
+  show  : show,
+  index : index
 };

@@ -1,10 +1,7 @@
 const mongoose   = require('mongoose');
 const bodyParser = require('body-parser');
-//const morgan     = require('morgan');
 const config     = require('./environment');
-//const cors       = require('cors');
-//const websocket  = require('../components/websocket');
-//const scheduler  = require('../components/scheduler');
+
 
 
 function configureMongoose(){
@@ -25,16 +22,4 @@ module.exports = (app) => {
     // this will let us get the data from a POST
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
-
-    // Enable cors requests
-    /*app.use(cors());
-
-    if(config.env !== 'test') {
-        //don't show the log when it is test
-        //use morgan to log at command line
-        app.use(morgan('dev'));
-
-        // Begin the schedule
-        scheduler.begin();
-    }*/
 };

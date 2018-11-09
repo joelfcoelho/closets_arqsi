@@ -21,12 +21,12 @@ let ItemSchema = new Schema({
   idProduto   : {
     type      : Number,
     required  : true,
-    validate: {
-      validator:  function(v){
-        if (v === 0) return true;
-        return gda.get('/api/produto/${v}');
-      }
-    }
+    // validate: {
+    //   validator:  function(v){
+    //     if (v === 0) return true;
+    //     return gda.get('/api/produto/${v}');
+    //   }
+    // }
   },
 
   preco   : {

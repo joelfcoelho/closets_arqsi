@@ -11,6 +11,5 @@ function createInstance() {
 
 let client  = createInstance();
 
-//client.interceptors.response.use((response) =>  response, handleErrorResponse);
 
 module.exports = client;

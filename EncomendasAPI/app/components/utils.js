@@ -58,7 +58,7 @@ function handleError(req, res, defaultStatus){
         console.error('An unexpected error has occurred', err);
         return res.status(defaultStatus || 500).json({
             error   : 'internal_server_error',
-            message : 'Oops, parece que algo correu mal. Por favor, tente mais tarde.'
+            message : 'Algo correu mal. Por favor, tente mais tarde.'
         });
     };
 }

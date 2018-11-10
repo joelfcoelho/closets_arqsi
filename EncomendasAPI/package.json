@@ -4,6 +4,8 @@
   "description": "api encomendas",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
+    "seed": "node seeder/index.js",
     "test": "mocha --timeout 10000 --exit --recursive"
   },
   "author": "",
@@ -20,6 +22,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "mongoose-seeder": "^1.2.1"
   }
 }

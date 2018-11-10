@@ -4,16 +4,11 @@ const gda       = require('../components/gestao-armarios');
 
 
 // let ParteSchema = new Schema({
-//   idParte   : {
-//     type      : Number,
-//     required  : true,
-//     validate: {
-//       validator:  function(v1, v2){
-//         if (v === 0) return true;
-//         return gda.get('/api/produto/${v1}/parte/${v2}');
-//       }
-//     }
-//   },
+//   idParte     : Number,
+//   preco       : Number,
+//   altura      : Number,
+//   largura     : Number,
+//   profundidade: Number,
 // });
 
 
@@ -21,51 +16,24 @@ let ItemSchema = new Schema({
   idProduto   : {
     type      : Number,
     required  : true,
-    // validate: {
-    //   validator:  function(v){
-    //     if (v === 0) return true;
-    //     return gda.get('/api/produto/${v}');
-    //   }
-    // }
+    validate: {
+      validator:  function(v){
+        if (v === 0) return true;
+        return gda.get(`/api/produto/${v}`);
+      }
+    }
   },
 
-  preco   : {
-    type      : Number,
-    required  : [true, 'O preço é obrigatório.']
-  },
-
-  altura  : {
-    type      : Number,
-    required  : [true, 'A altura é obrigatória.']
-  },
-
-  largura : {
-    type      : Number,
-    required  : [true, 'A largura é obrigatória.']
-  },
-
-  profundidade  : {
-    type      : Number,
-    required  : [true, 'A profundidade é obrigatória.']
-  },
-
-  // itens  : {
-  //   type  : [ParteSchema],
-  //   validate: {
-  //     validator:  function(v){
-  //       if (v === 0) return true;
-  //       return gda.get('/api/produto/${v}/partes');
-  //     }
-  // },
+  // Fields to populate from the gda api
+  preco       : Number,
+  altura      : Number,
+  largura     : Number,
+  profundidade: Number,
+  // itens       : [ParteSchema],
 });
 
 
 let EncomendaSchema = new Schema({
-  // cliente:  {
-  //   type      : mongoose.Schema.Types.ObjectId,
-  //   ref       : 'User',
-  //   required  : true
-  // },
 
   itens: {
     type    : [ItemSchema],
@@ -78,5 +46,56 @@ let EncomendaSchema = new Schema({
   }
 
 });
+
+
+//  Validate and populate Produto fields from gda api
+ItemSchema.pre('save', true, function(next, done){
+
+  next(); // next middleware to be executed
+
+  let promises = [];
+
+  promises.push(this.isModified('idProduto') ? gda.get(`/api/produto/${this.idProduto}`) : {});   // Fetch produto data if idProduto was modified, otherwise return {}
+  // promises.push(this.isModified('idProduto') ? gda.get(`/api/produto/${this.idProduto/partes}`) : {});
+
+  let that = this;
+
+  Promise.all(promises)
+  .then(function(responses){
+    let produto = responses[0].data;
+    // let parte   = responses[1].data;
+    //
+    // if(parte){
+    //   that.idParte = parte.ParteID;
+    //   that.preco = parte.preco;
+    //   that.altura = parte.altura;
+    //   that.largura = parte.largura;
+    //   that.profundidade = parte.profundidade;
+    // }
+
+    if(produto){
+      that.preco = produto.preco;
+      that.altura = produto.altura;
+      that.largura = produto.largura;
+      that.profundidade = produto.profundidade;
+      // that.itens = produto.itens.map(i =>  {
+      //   // if (!i.idProduto) {
+      //   //   i.idProduto = 0;
+      //   // }
+      //   return  i;
+      // });
+    }
+
+
+    done(); //This middleware is finished
+
+
+
+  })
+  .catch(err => done(err));
+
+});
+
+
 
 module.exports = mongoose.model('Encomenda', EncomendaSchema);

@@ -1,0 +1,12 @@
+{
+  "encomendas": {
+    "_model": "Encomenda",
+    "encomenda1": {
+      "itens":  [{
+        "idProduto": 1
+        },{
+        "idProduto": 2
+        }]
+    }
+  }
+}

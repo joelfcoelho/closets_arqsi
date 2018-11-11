@@ -186,7 +186,7 @@ namespace ArmariosPorMedidaAPI.Controllers
 
             //var parts = _context.ProdutoPartes.Where(p => p.ProdutoID == id).Select(p =>p.Parte).ToList();
 
-            var parts = _context.ProdutoPartes.Where(p => p.ProdutoID == id).Select(p => 
+            /*var parts = _context.ProdutoPartes.Where(p => p.ProdutoID == id).Select(p => 
             new DTOs.ParteDTO
             {
                 
@@ -197,6 +197,17 @@ namespace ArmariosPorMedidaAPI.Controllers
                 Largura = p.Parte.Largura,
                 Profundidade = p.Parte.Profundidade
 
+            }).ToList();*/
+
+            var parts = _context.ProdutoPartes.Where(p => p.ProdutoID == id).Select(p =>
+            new DTOs.ParteDTO
+            {
+                ParteID = p.ParteID,
+                Nome = p.Parte.Nome,
+                Preco = p.Parte.Preco,
+                Altura = p.Parte.Altura,
+                Largura = p.Parte.Largura,
+                Profundidade = p.Parte.Profundidade
             }).ToList();
             
 

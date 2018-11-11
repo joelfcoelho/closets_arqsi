@@ -24,8 +24,8 @@ namespace ArmariosPorMedidaAPI.Models
 
        /* public int? MaterialID { get; set; }
         public virtual Material Material { get; set; } */
-        public int? CategoriaID { get; set; }
-        public virtual Categoria Categoria { get; set; }
+        //public int? CategoriaID { get; set; }
+        //public virtual Categoria Categoria { get; set; }
         
        /* public int? AcabamentoID { get; set; }
         public virtual Acabamento Acabamento { get; set; }*/

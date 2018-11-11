@@ -3,13 +3,14 @@ const Schema    = mongoose.Schema;
 const gda       = require('../components/gestao-armarios');
 
 
-// let ParteSchema = new Schema({
-//   idParte     : Number,
-//   preco       : Number,
-//   altura      : Number,
-//   largura     : Number,
-//   profundidade: Number,
-// });
+let ParteSchema = new Schema({
+  idParte     : Number,
+  nome        : String,
+  preco       : Number,
+  altura      : Number,
+  largura     : Number,
+  profundidade: Number,
+});
 
 
 let ItemSchema = new Schema({
@@ -29,7 +30,7 @@ let ItemSchema = new Schema({
   altura      : Number,
   largura     : Number,
   profundidade: Number,
-  // itens       : [ParteSchema],
+  itens       : [ParteSchema],
 });
 
 
@@ -60,13 +61,15 @@ ItemSchema.pre('save', true, function(next, done){
 
   let that = this;
 
+
   Promise.all(promises)
   .then(function(responses){
     let produto = responses[0].data;
     // let parte   = responses[1].data;
-    //
+
     // if(parte){
-    //   that.idParte = parte.ParteID;
+    //   that.idParte = parte.parteID;
+    //   that.nome = parte.nome;
     //   that.preco = parte.preco;
     //   that.altura = parte.altura;
     //   that.largura = parte.largura;
@@ -78,11 +81,13 @@ ItemSchema.pre('save', true, function(next, done){
       that.altura = produto.altura;
       that.largura = produto.largura;
       that.profundidade = produto.profundidade;
-      // that.itens = produto.itens.map(i =>  {
-      //   // if (!i.idProduto) {
-      //   //   i.idProduto = 0;
-      //   // }
-      //   return  i;
+      // that.itens = produto.itens.push({
+      //   idParte : parte.ParteID,
+      //   nome  : parte.nome,
+      //   preco : parte.preco,
+      //   altura : parte.altura,
+      //   largura : parte.largura,
+      //   profundidade : parte.profundidade,
       // });
     }
 

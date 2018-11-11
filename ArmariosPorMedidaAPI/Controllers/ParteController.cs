@@ -31,7 +31,11 @@ namespace ArmariosPorMedidaAPI.Controllers
                             select new DTOs.ParteDTO()
                             {
                                 ParteID = p.ParteID,
-                                Nome = p.Nome
+                                Nome = p.Nome,
+                                Preco = p.Preco,
+                                Altura = p.Altura,
+                                Largura = p.Largura,
+                                Profundidade = p.Profundidade
                             };
             return parte;
         }
@@ -44,7 +48,11 @@ namespace ArmariosPorMedidaAPI.Controllers
             new DTOs.ParteDTO()
             {
                 ParteID = p.ParteID,
-                Nome = p.Nome
+                Nome = p.Nome,
+                Preco = p.Preco,
+                Altura = p.Altura,
+                Largura = p.Largura,
+                Profundidade = p.Profundidade
             }).SingleOrDefaultAsync(p => p.ParteID == id);
 
             if(!ModelState.IsValid)

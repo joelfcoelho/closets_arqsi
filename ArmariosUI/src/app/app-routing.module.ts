@@ -9,7 +9,7 @@ import { P404Component } from './pages/404.component';
 
 
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
@@ -25,6 +25,14 @@ const routes: Routes = [
       {
         path: 'home',
         loadChildren: './pages/home/home.module#HomeModule',
+      },
+      {
+        path: 'produtos',
+        loadChildren: './pages/products/products.module#ProductsModule'
+      },
+      {
+        path: 'encomendas',
+        loadChildren: './pages/orders/orders.module#OrdersModule'
       },
 
     ]

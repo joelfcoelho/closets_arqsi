@@ -7,6 +7,9 @@ import { CreateOrdersComponent } from './create-orders/create-orders.component';
 import { EditOrdersComponent } from './edit-orders/edit-orders.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 
+
+import { SharedModule } from '../../shared/shared.module';
+
 @NgModule({
   declarations: [OrdersComponent, CreateOrdersComponent, EditOrdersComponent, OrderDetailsComponent],
   imports: [

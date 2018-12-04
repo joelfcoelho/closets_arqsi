@@ -13,7 +13,7 @@ import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 
 // Layouts
 import { FullLayoutComponent } from './layouts/full-layout.component';
-// import { SimpleLayoutComponent } from './layouts/simple-layout.component';
+
 
 
 import { SharedModule } from './shared/shared.module';

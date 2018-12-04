@@ -25,19 +25,21 @@ export class OrdersComponent implements OnInit {
     this.getOrders();
   }
 
-  getOrders() {
-    this.loading = true;
-    this.http.get<Encomenda[]>('encomenda')
-    .subscribe(
-      response => {
-        this.loading = false;
-        this.encomendas = response;
+  private loadOrders() {
+      this.loading = true;
 
-      },
-      err => {
-        this.toastr.error(err.error.message, 'Erro');
-        this.loading = false;
-      }
-    );
+      this.http.get<Encomenda[]>(`encomenda`, {
+      }).subscribe(
+          data => {
+              this.loading = false;
+              this.encomendas = data;
+          },
+          err => this.handleError(err)
+      );
+  }
+
+  private handleError(err) {
+      this.loading = false,
+      this.toastr.error(err.error.message, 'Erro');
   }
 }

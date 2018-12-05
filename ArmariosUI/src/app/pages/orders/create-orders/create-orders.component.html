@@ -1,3 +1,56 @@
-<p>
-  create-orders works!
-</p>
+<div class="card">
+  <form (ngSubmit)="create()">
+    <div class="card-header">
+      <strong>Nova encomenda</strong>
+    </div>
+    <div class="card-body">
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <button type="submit" class="btn btn-success" [disabled]="form.itens.length == 0 || loading">
+              <i class="fa fa-save" *ngIf="!loading"></i>
+              <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+              Guardar
+            </button>
+            <button type="button" (click)="addProduct()" class="btn btn-primary" [disabled]="loading">
+              <i class="fa fa-plus" *ngIf="!loading"></i>
+              <i class="fa fa-spinner fa-spin" *ngIf="loading"></i>
+              Adicionar produto
+            </button>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col">
+            <table class="table table-bordered table-stripped table-responsive">
+              <thead class="thead-inverse">
+                <tr>
+                  <th>Nome</th>
+                  <th>Preço</th>
+                  <th>Altura</th>
+                  <th>Largura</th>
+                  <th>Profundidae</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tr *ngIf="form.itens.length == 0" class="text-center">
+                <td colspan="7">Ainda não acrescentou produtos na encomenda.</td>
+              </tr>
+              <tr *ngFor="let item of form.itens; let number = index">
+                <td>{{item.nome}}</td>
+                <td>{{item.preco}}</td>
+                <td>{{item.altura}}</td>
+                <td>{{item.largura}}</td>
+                <td>{{item.profundidade}}</td>
+                <td>
+                  <button type="button" class="btn btn-danger" (click)="deleteProduct(number)">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

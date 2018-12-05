@@ -5,16 +5,15 @@ import { OrdersRoutingModule } from './orders-routing.module';
 import { OrdersComponent } from './orders.component';
 import { CreateOrdersComponent } from './create-orders/create-orders.component';
 import { EditOrdersComponent } from './edit-orders/edit-orders.component';
-import { OrderDetailsComponent } from './order-details/order-details.component';
-
 
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [OrdersComponent, CreateOrdersComponent, EditOrdersComponent, OrderDetailsComponent],
+  declarations: [OrdersComponent, CreateOrdersComponent, EditOrdersComponent],
   imports: [
     CommonModule,
-    OrdersRoutingModule
+    OrdersRoutingModule,
+    SharedModule
   ]
 })
 export class OrdersModule { }

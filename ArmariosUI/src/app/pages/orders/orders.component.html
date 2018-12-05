@@ -5,14 +5,6 @@
     <div class="card-body">
         <div class="row">
             <div class="col">
-                <a class="btn btn-primary">
-                    <i class="fa fa-plus-circle"></i>
-                    Nova encomenda
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
                 <table class="table table-bordered table-striped mt-2">
                     <thead class="thead-inverse">
                         <tr>
@@ -20,7 +12,6 @@
                             <th>Itens encomendados</th>
                             <th>Ações</th>
                         </tr>
-
                     </thead>
                     <tbody>
                       <tr *ngIf="loading">
@@ -30,10 +21,10 @@
                       </tr>
                       <tr *ngIf="encomendas && encomendas.length == 0">
                           <td colspan="5" class="text-center">
-                              Não existem receitas
+                              Não existem encomendas
                           </td>
                       </tr>
-                      <tr >
+                      <tr *ngFor="let encomenda of encomendas">
                           <td>{{encomenda._id}}</td>
                           <td>
                               <button class="btn btn-dark" title="Ver produtos encomendados">

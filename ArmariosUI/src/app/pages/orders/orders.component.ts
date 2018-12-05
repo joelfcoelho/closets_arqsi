@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { Encomenda } from '../../models';
+import { Item, Encomenda } from '../../models';
 
 
 @Component({
@@ -26,21 +26,18 @@ export class OrdersComponent implements OnInit {
   }
 
   getOrders() {
-      //this.loading = true;
-      this.http.get<Encomenda[]>(`encomenda`)
+      this.http.get<Encomenda[]>(`/encomenda`)
       .subscribe(
           response => {
-
               this.encomendas = response;
-              //this.loading = false;
-
           },
           err => this.handleError(err)
       );
   }
 
+
+
   private handleError(err) {
-      this.loading = false,
       this.toastr.error(err.error.message, 'Erro');
   }
 }

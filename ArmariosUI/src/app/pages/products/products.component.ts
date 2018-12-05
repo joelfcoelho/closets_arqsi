@@ -27,7 +27,7 @@ export class ProductsComponent implements OnInit {
 
   getProducts() {
       this.loading = true;
-      this.http.get<Produto[]>('produtos')
+      this.http.get<Produto[]>(`/produtos`)
       .subscribe(
           response => {
               this.produtos = response;

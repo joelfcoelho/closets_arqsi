@@ -12,7 +12,7 @@ export class FullLayoutComponent implements OnInit {
     // public status: {isopen: boolean} = {isopen: false};
     // public user = {email: '', name: ''};
 
-    constructor(/*public authService: AuthService*/, private router: Router) {}
+    constructor(/*public authService: AuthService,*/ private router: Router) {}
 
     public toggled(open: boolean): void {
         console.log('Dropdown is now: ', open);
@@ -21,7 +21,7 @@ export class FullLayoutComponent implements OnInit {
     public toggleDropdown($event: MouseEvent): void {
         $event.preventDefault();
         $event.stopPropagation();
-        this.status.isopen = !this.status.isopen;
+        //this.status.isopen = !this.status.isopen;
     }
 
     ngOnInit(): void {

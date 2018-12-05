@@ -1,6 +1,7 @@
 const mongoose   = require('mongoose');
 const bodyParser = require('body-parser');
 const config     = require('./environment');
+const cors       = require('cors');
 
 
 
@@ -22,4 +23,7 @@ module.exports = (app) => {
     // this will let us get the data from a POST
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
+
+    // Enable cors requests
+    app.use(cors());
 };

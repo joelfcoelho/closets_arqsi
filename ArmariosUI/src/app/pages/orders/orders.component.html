@@ -17,10 +17,10 @@
                     <thead class="thead-inverse">
                         <tr>
                             <th>Id</th>
-                        </tr>
-                        <tr>
                             <th>Itens encomendados</th>
+                            <th>Ações</th>
                         </tr>
+
                     </thead>
                     <tbody>
                       <tr *ngIf="loading">
@@ -28,23 +28,17 @@
                               <i class="fa fa-spin fa-spinner" aria-hidden="true"></i>
                           </td>
                       </tr>
-                      <tr *ngIf="encomenda && encomenda.length == 0">
+                      <tr *ngIf="encomendas && encomendas.length == 0">
                           <td colspan="5" class="text-center">
                               Não existem receitas
                           </td>
                       </tr>
-                      <tr *ngFor="let encomenda of encomendas">
+                      <tr >
                           <td>{{encomenda._id}}</td>
                           <td>
-                              <button class="btn btn-dark" title="Ver prescrições" (click)="showPrescription(receita.prescricoes)">
-                                  <i class="fa fa-eye"></i>
+                              <button class="btn btn-dark" title="Ver produtos encomendados">
+                                  <i class="fas fa-plus"></i>
                               </button>
-                              <a class="btn btn-success" title="Editar receita" [routerLink]="['/receitas', receita._id, 'editar']" *ngIf="authService.hasRole('medico')">
-                                  <i class="fa fa-pencil"></i>
-                              </a>
-                              <a class="btn btn-success" title="Ver detalhes" [routerLink]="['/receitas', receita._id, 'detalhes']" *ngIf="authService.hasRole('utente')">
-                                  <i class="fa fa-external-link"></i>
-                              </a>
                           </td>
                       </tr>
                   </tbody>

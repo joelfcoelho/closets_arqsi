@@ -7,6 +7,7 @@ router.post('/', (req, res,next) => res.send({ok: req.body.text}));
 
 
 router.use('/encomenda', require('./encomendas'));
+router.use('/produtos', require('./produtos'));
 
 
 module.exports = router;

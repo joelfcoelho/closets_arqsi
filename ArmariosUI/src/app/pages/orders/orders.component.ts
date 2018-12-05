@@ -25,14 +25,15 @@ export class OrdersComponent implements OnInit {
     this.getOrders();
   }
 
-  private loadOrders() {
-      this.loading = true;
+  getOrders() {
+      //this.loading = true;
+      this.http.get<Encomenda[]>(`encomenda`)
+      .subscribe(
+          response => {
 
-      this.http.get<Encomenda[]>(`encomenda`, {
-      }).subscribe(
-          data => {
-              this.loading = false;
-              this.encomendas = data;
+              this.encomendas = response;
+              //this.loading = false;
+
           },
           err => this.handleError(err)
       );

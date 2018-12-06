@@ -29,12 +29,20 @@
               </td>
             </tr>
             <tr *ngFor="let produto of produtos">
-              <td>{{produto._id}}</td>
+              <td>{{produto.produtoID}}</td>
               <td>{{produto.nome}}</td>
               <td>{{produto.preco}}</td>
               <td>{{produto.altura}}</td>
               <td>{{produto.largura}}</td>
               <td>{{produto.profundidade}}</td>
+              <td>
+                  <button class="btn btn-dark" title="Apagar produto">
+                      <i class="fas fa-trash-alt"></i>
+                  </button>
+                  <button class="btn btn-dark" title="Editar produto">
+                      <i class="fas fa-edit"></i>
+                  </button>
+              </td>
             </tr>
           </tbody>
         </table>

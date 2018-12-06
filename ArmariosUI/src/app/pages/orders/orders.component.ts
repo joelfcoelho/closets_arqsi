@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { ItemDetailsComponent } from '../../dialogs/item-details/item-details.component';
 import { Item, Encomenda } from '../../models';
 
 
@@ -26,18 +27,25 @@ export class OrdersComponent implements OnInit {
   }
 
   getOrders() {
-      this.http.get<Encomenda[]>(`/encomenda`)
-      .subscribe(
-          response => {
-              this.encomendas = response;
-          },
-          err => this.handleError(err)
-      );
+    this.loading = true;
+    this.http.get<Encomenda[]>(`https://gestao-armarios.herokuapp.com/api/encomenda`)
+    .subscribe(
+      response => {
+        this.encomendas = response;
+        this.loading = false;
+      },
+      err => {
+        this.toastr.error(err.error.message, 'Erro');
+        this.loading = false;
+      }
+    );
   }
 
 
 
-  private handleError(err) {
-      this.toastr.error(err.error.message, 'Erro');
+  showItems(item: Item) {
+    this.bsModalRef = this.modalService.show(ItemDetailsComponent, {class: 'modal-lg'});
+    this.bsModalRef.content.itens = item;
   }
+
 }

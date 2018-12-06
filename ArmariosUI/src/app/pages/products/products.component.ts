@@ -26,17 +26,17 @@ export class ProductsComponent implements OnInit {
   }
 
   getProducts() {
-      this.loading = true;
-      this.http.get<Produto[]>(`/produtos`)
-      .subscribe(
-          response => {
-              this.produtos = response;
-              this.loading = false;
-          },
-          err => {
-              this.toastr.error(err.error.message, 'Erro');
-              this.loading = false;
-          }
-      );
+    this.loading = true;
+    this.http.get<Produto[]>(`https://gestao-armarios.herokuapp.com/api/produtos`)
+    .subscribe(
+      response => {
+        this.produtos = response;
+        this.loading = false;
+      },
+      err => {
+        this.toastr.error(err.error.message, 'Erro');
+        this.loading = false;
+      }
+    );
   }
 }

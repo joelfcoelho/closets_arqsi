@@ -27,8 +27,13 @@
                       <tr *ngFor="let encomenda of encomendas">
                           <td>{{encomenda._id}}</td>
                           <td>
-                              <button class="btn btn-dark" title="Ver produtos encomendados">
-                                  <i class="fas fa-plus"></i>
+                              <button class="btn btn-dark" title="Ver produtos encomendados" (click)="showItems(encomenda.items)">
+                                  <i class="fas fa-caret-down"></i>
+                              </button>
+                          </td>
+                          <td>
+                              <button class="btn btn-dark" title="Apagar encomenda">
+                                  <i class="fas fa-trash-alt"></i>
                               </button>
                           </td>
                       </tr>

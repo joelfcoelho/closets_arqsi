@@ -13,7 +13,7 @@ import { EditProductsComponent } from './edit-products/edit-products.component';
 @NgModule({
   declarations: [ProductsComponent, CreateProductsComponent, EditProductsComponent],
   imports: [
-    //CommonModule,
+    CommonModule,
     ProductsRoutingModule,
     SharedModule
   ]

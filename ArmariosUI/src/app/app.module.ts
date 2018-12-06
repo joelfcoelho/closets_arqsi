@@ -18,6 +18,7 @@ import { FullLayoutComponent } from './layouts/full-layout.component';
 
 
 import { SharedModule } from './shared/shared.module';
+import { ItemDetailsComponent } from './dialogs/item-details/item-details.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SharedModule } from './shared/shared.module';
     FullLayoutComponent,
     NAV_DROPDOWN_DIRECTIVES,
     BreadcrumbsComponent,
-    SIDEBAR_TOGGLE_DIRECTIVES
+    SIDEBAR_TOGGLE_DIRECTIVES,
+    ItemDetailsComponent
   ],
   imports: [
     BrowserModule,

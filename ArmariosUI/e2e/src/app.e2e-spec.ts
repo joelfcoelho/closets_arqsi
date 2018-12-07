@@ -9,6 +9,12 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to ArmariosUI!');
+    expect(page.getParagraphText()).toEqual('Encomenda de armários');
+  });
+
+  it('length of welcome message = 22', () => {
+    page.navigateTo();
+    var a=page.getParagraphText.toString;
+    expect(a.length==22);
   });
 });

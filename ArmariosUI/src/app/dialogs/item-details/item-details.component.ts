@@ -8,7 +8,7 @@ import { BsModalRef } from 'ngx-bootstrap';
   styleUrls: ['./item-details.component.scss']
 })
 export class ItemDetailsComponent implements OnInit {
-  items   :   Array<Item> = [];
+  itens   :   Array<Item> = [];
 
   constructor(public bsModalRef: BsModalRef) { }
 

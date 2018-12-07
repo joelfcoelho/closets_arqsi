@@ -43,7 +43,7 @@ export class OrdersComponent implements OnInit {
 
 
 
-  showItems(item: Item) {
+  showItens(item: Item) {
     this.bsModalRef = this.modalService.show(ItemDetailsComponent, {class: 'modal-lg'});
     this.bsModalRef.content.itens = item;
   }

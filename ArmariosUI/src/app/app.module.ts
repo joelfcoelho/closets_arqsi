@@ -38,6 +38,9 @@ import { ItemDetailsComponent } from './dialogs/item-details/item-details.compon
     SharedModule
   ],
   providers: [],
+  entryComponents: [
+    ItemDetailsComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
